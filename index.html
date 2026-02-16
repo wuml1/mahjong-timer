@@ -144,19 +144,9 @@
             box-shadow: 0 6px 12px rgba(220, 53, 69, 0.4);
         }
 
-        .water-btn {
-            background: linear-gradient(135deg, #00b4db 0%, #0083b0 100%);
-            color: white;
-        }
-
-        .water-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(0, 180, 219, 0.4);
-        }
-
         .main-content {
             display: grid;
-            grid-template-columns: 1fr 280px;
+            grid-template-columns: 1fr 300px;
             gap: 20px;
         }
 
@@ -274,6 +264,16 @@
             z-index: 1;
         }
 
+        .water-fee-display {
+            font-size: 14px;
+            text-align: center;
+            color: #00b4db;
+            margin: 5px 0;
+            font-weight: bold;
+            position: relative;
+            z-index: 1;
+        }
+
         .button-group {
             display: flex;
             gap: 10px;
@@ -324,6 +324,18 @@
             box-shadow: 0 6px 12px rgba(255, 193, 7, 0.4);
         }
 
+        .btn-water {
+            background: linear-gradient(135deg, #00b4db 0%, #0083b0 100%);
+            color: white;
+            font-size: 12px;
+            padding: 8px;
+        }
+
+        .btn-water:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 180, 219, 0.4);
+        }
+
         .btn:disabled {
             opacity: 0.5;
             cursor: not-allowed;
@@ -342,6 +354,7 @@
             border-radius: 15px;
             box-shadow: 0 8px 25px rgba(0,0,0,0.1);
             border: 3px solid #00b4db;
+            height: fit-content;
         }
 
         .water-panel h3 {
@@ -457,6 +470,52 @@
             box-shadow: 0 6px 12px rgba(102, 126, 234, 0.4);
         }
 
+        .water-modal-content {
+            background: linear-gradient(135deg, rgba(255,255,255,0.98) 0%, rgba(240,248,255,0.98) 100%);
+            border: 3px solid #00b4db;
+        }
+
+        .water-modal-content h2 {
+            color: #00b4db;
+        }
+
+        .water-modal-content .modal-time {
+            border-left-color: #00b4db;
+        }
+
+        .water-modal-content .modal-btn {
+            background: linear-gradient(135deg, #00b4db 0%, #0083b0 100%);
+        }
+
+        .table-select {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+            gap: 8px;
+            margin: 15px 0;
+        }
+
+        .table-select button {
+            padding: 8px;
+            border: 2px solid #ddd;
+            background: white;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .table-select button:hover {
+            border-color: #00b4db;
+            background: #f0f9ff;
+        }
+
+        .table-select button.selected {
+            background: linear-gradient(135deg, #00b4db 0%, #0083b0 100%);
+            color: white;
+            border-color: #0083b0;
+        }
+
         @media (max-width: 1024px) {
             .main-content {
                 grid-template-columns: 1fr;
@@ -534,8 +593,8 @@
                 <div class="water-panel">
                     <h3>💧 水费记录</h3>
                     <div class="water-buttons">
-                        <button class="water-btn-item water-btn-2" onclick="addWaterFee(2)">➕ 加2元水费</button>
-                        <button class="water-btn-item water-btn-5" onclick="addWaterFee(5)">➕ 加5元水费</button>
+                        <button class="water-btn-item water-btn-2" onclick="showWaterModal(2)">➕ 加2元水费</button>
+                        <button class="water-btn-item water-btn-5" onclick="showWaterModal(5)">➕ 加5元水费</button>
                     </div>
                 </div>
             </div>
@@ -548,6 +607,15 @@
             <div class="modal-time" id="modalTime"></div>
             <div class="modal-fee" id="modalFee">¥0.00</div>
             <button class="modal-btn" onclick="closeModal()">确定</button>
+        </div>
+    </div>
+
+    <div class="modal" id="waterModal">
+        <div class="modal-content water-modal-content">
+            <h2>💧 选择麻将桌 💧</h2>
+            <p style="color: #666; margin-bottom: 15px;">请选择要添加水费的麻将桌：</p>
+            <div class="table-select" id="tableSelectContainer"></div>
+            <button class="modal-btn" onclick="closeWaterModal()">取消</button>
         </div>
     </div>
 
@@ -573,6 +641,9 @@
             waterIncome: 0
         };
 
+        let pendingWaterAmount = 0;
+        let updateTimer = null;
+
         // 初始化
         function init() {
             loadState();
@@ -584,21 +655,35 @@
         function loadState() {
             const saved = localStorage.getItem('mahjongState');
             if (saved) {
-                state = JSON.parse(saved);
+                try {
+                    state = JSON.parse(saved);
+                } catch (e) {
+                    console.error('Failed to parse saved state:', e);
+                    initializeState();
+                }
             } else {
-                // 初始化所有桌子
-                TABLES_CONFIG.forEach((config, index) => {
-                    state.tables[index] = {
-                        id: `${config.room}-${config.number}`,
-                        room: config.room,
-                        number: config.number,
-                        isActive: false,
-                        startTime: null,
-                        elapsedSeconds: 0,
-                        startTimeDisplay: null
-                    };
-                });
+                initializeState();
             }
+        }
+
+        // 初始化状态
+        function initializeState() {
+            state.tables = {};
+            state.mahjongIncome = 0;
+            state.waterIncome = 0;
+            
+            TABLES_CONFIG.forEach((config, index) => {
+                state.tables[index] = {
+                    id: `${config.room}-${config.number}`,
+                    room: config.room,
+                    number: config.number,
+                    isActive: false,
+                    startTime: null,
+                    elapsedSeconds: 0,
+                    startTimeDisplay: null,
+                    waterFee: 0
+                };
+            });
         }
 
         // 保存状态
@@ -652,6 +737,11 @@
             fee.id = `fee-${index}`;
             fee.textContent = `¥${calculateFee(table.elapsedSeconds).toFixed(2)}`;
 
+            const waterFeeDisplay = document.createElement('div');
+            waterFeeDisplay.className = 'water-fee-display';
+            waterFeeDisplay.id = `water-fee-${index}`;
+            waterFeeDisplay.textContent = table.waterFee > 0 ? `水费：¥${table.waterFee.toFixed(2)}` : '';
+
             const buttonGroup = document.createElement('div');
             buttonGroup.className = 'button-group';
 
@@ -681,6 +771,7 @@
             card.appendChild(timeDisplay);
             card.appendChild(timer);
             card.appendChild(fee);
+            card.appendChild(waterFeeDisplay);
             card.appendChild(buttonGroup);
 
             return card;
@@ -719,6 +810,7 @@
 
             const fee = calculateFee(table.elapsedSeconds);
             state.mahjongIncome += fee;
+            state.waterIncome += table.waterFee;
 
             const startTimeStr = table.startTimeDisplay || '未记录';
             const endTimeStr = formatDateTime(endTime);
@@ -730,20 +822,47 @@
             table.startTime = null;
             table.elapsedSeconds = 0;
             table.startTimeDisplay = null;
+            table.waterFee = 0;
 
             saveState();
             renderTables();
         }
 
-        // 添加水费
-        function addWaterFee(amount) {
-            state.waterIncome += amount;
+        // 显示水费选择模态框
+        function showWaterModal(amount) {
+            pendingWaterAmount = amount;
+            
+            const container = document.getElementById('tableSelectContainer');
+            container.innerHTML = '';
+            
+            Object.keys(state.tables).forEach(index => {
+                const table = state.tables[index];
+                const btn = document.createElement('button');
+                btn.textContent = `${table.room}-${table.number}`;
+                btn.onclick = () => addWaterFeeToTable(index, amount);
+                btn.style.cursor = 'pointer';
+                container.appendChild(btn);
+            });
+            
+            document.getElementById('waterModal').classList.add('show');
+        }
+
+        // 添加水费到具体桌子
+        function addWaterFeeToTable(tableIndex, amount) {
+            const table = state.tables[tableIndex];
+            table.waterFee += amount;
             saveState();
-            updateStats();
+            renderTables();
+            closeWaterModal();
             
             // 显示提示
-            const msg = `已添加${amount}元水费`;
-            alert(msg);
+            alert(`已为房间${table.room}-${table.number}号桌添加${amount}元水费`);
+        }
+
+        // 关闭水费模态框
+        function closeWaterModal() {
+            document.getElementById('waterModal').classList.remove('show');
+            pendingWaterAmount = 0;
         }
 
         // 计算费用
@@ -790,7 +909,13 @@
 
         // 更新循环
         function startUpdateLoop() {
-            setInterval(() => {
+            if (updateTimer) {
+                clearInterval(updateTimer);
+            }
+            
+            updateTimer = setInterval(() => {
+                let needsUpdate = false;
+                
                 Object.keys(state.tables).forEach(index => {
                     const table = state.tables[index];
                     if (table.isActive && table.startTime) {
@@ -800,10 +925,14 @@
 
                         if (timerEl) timerEl.textContent = formatTime(elapsed);
                         if (feeEl) feeEl.textContent = `¥${calculateFee(elapsed).toFixed(2)}`;
+                        
+                        needsUpdate = true;
                     }
                 });
 
-                updateStats();
+                if (needsUpdate) {
+                    updateStats();
+                }
             }, UPDATE_INTERVAL);
         }
 
@@ -817,6 +946,7 @@
                     state.tables[index].startTime = null;
                     state.tables[index].elapsedSeconds = 0;
                     state.tables[index].startTimeDisplay = null;
+                    state.tables[index].waterFee = 0;
                 });
                 saveState();
                 renderTables();
@@ -828,6 +958,13 @@
 
         // 页面卸载时保存状态
         window.addEventListener('beforeunload', saveState);
+
+        // 关闭水费模态框的快捷方式
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeWaterModal();
+            }
+        });
     </script>
 </body>
 </html>
