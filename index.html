@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>麻将桌计时管理系统</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 24px;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .stat-item {
+            background: #f5f5f5;
+            padding: 12px;
+            border-radius: 6px;
+            text-align: center;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .stat-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .price-tip {
+            font-size: 14px;
+            color: #666;
+            padding: 10px;
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            border-radius: 4px;
+        }
+
+        .controls {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        button.reset-btn {
+            padding: 8px 16px;
+            background: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background 0.3s;
+        }
+
+        button.reset-btn:hover {
+            background: #c82333;
+        }
+
+        .tables-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .table-card {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .table-card.active {
+            box-shadow: 0 0 20px rgba(255, 193, 7, 0.5);
+            border: 2px solid #ffc107;
+        }
+
+        .table-card.idle {
+            border: 2px solid #ddd;
+        }
+
+        .table-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .table-id {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .status-light {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #ccc;
+            transition: all 0.3s;
+        }
+
+        .status-light.active {
+            background: #ffc107;
+            box-shadow: 0 0 10px #ffc107;
+        }
+
+        .timer {
+            font-size: 32px;
+            font-weight: bold;
+            text-align: center;
+            color: #333;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+        }
+
+        .fee {
+            font-size: 24px;
+            text-align: center;
+            color: #28a745;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-start {
+            background: #28a745;
+            color: white;
+        }
+
+        .btn-start:hover {
+            background: #218838;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(40, 167, 69, 0.3);
+        }
+
+        .btn-stop {
+            background: #dc3545;
+            color: white;
+        }
+
+        .btn-stop:hover {
+            background: #c82333;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(220, 53, 69, 0.3);
+        }
+
+        .btn-pause {
+            background: #ffc107;
+            color: #333;
+        }
+
+        .btn-pause:hover {
+            background: #e0a800;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(255, 193, 7, 0.3);
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal.show {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+
+        .modal-content h2 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .modal-fee {
+            font-size: 36px;
+            color: #28a745;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        .modal-btn {
+            padding: 10px 30px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+
+        .modal-btn:hover {
+            background: #5568d3;
+        }
+
+        @media (max-width: 768px) {
+            .tables-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .header h1 {
+                font-size: 20px;
+            }
+
+            .timer {
+                font-size: 24px;
+            }
+
+            .fee {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🀄 麻将桌计时管理系统</h1>
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-label">总桌数</div>
+                    <div class="stat-value">7</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">使用中</div>
+                    <div class="stat-value" id="activeCount">0</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">今日收入</div>
+                    <div class="stat-value" id="totalIncome">¥0.00</div>
+                </div>
+            </div>
+            <div class="price-tip">💰 计费标准：10元/小时</div>
+            <div class="controls">
+                <button class="reset-btn" onclick="resetAllData()">重置所有数据</button>
+            </div>
+        </div>
+
+        <div class="tables-grid" id="tablesContainer"></div>
+    </div>
+
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <h2>本次消费</h2>
+            <div class="modal-fee" id="modalFee">¥0.00</div>
+            <button class="modal-btn" onclick="closeModal()">确定</button>
+        </div>
+    </div>
+
+    <script>
+        // 配置
+        const TABLES_CONFIG = [
+            { room: 100, number: 1 },
+            { room: 101, number: 1 },
+            { room: 101, number: 2 },
+            { room: 103, number: 1 },
+            { room: 106, number: 1 },
+            { room: 107, number: 1 },
+            { room: 202, number: 1 }
+        ];
+
+        const PRICE_PER_HOUR = 10; // 元/小时
+        const UPDATE_INTERVAL = 1000; // 1秒更新一次
+
+        // 状态管理
+        let state = {
+            tables: {},
+            totalIncome: 0
+        };
+
+        // 初始化
+        function init() {
+            loadState();
+            renderTables();
+            startUpdateLoop();
+        }
+
+        // 加载状态
+        function loadState() {
+            const saved = localStorage.getItem('mahjongState');
+            if (saved) {
+                state = JSON.parse(saved);
+            } else {
+                // 初始化所有桌子
+                TABLES_CONFIG.forEach((config, index) => {
+                    state.tables[index] = {
+                        id: `${config.room}-${config.number}`,
+                        room: config.room,
+                        number: config.number,
+                        isActive: false,
+                        startTime: null,
+                        elapsedSeconds: 0
+                    };
+                });
+            }
+        }
+
+        // 保存状态
+        function saveState() {
+            localStorage.setItem('mahjongState', JSON.stringify(state));
+        }
+
+        // 渲染桌子
+        function renderTables() {
+            const container = document.getElementById('tablesContainer');
+            container.innerHTML = '';
+
+            Object.keys(state.tables).forEach(index => {
+                const table = state.tables[index];
+                const card = createTableCard(table, index);
+                container.appendChild(card);
+            });
+
+            updateStats();
+        }
+
+        // 创建桌子卡片
+        function createTableCard(table, index) {
+            const card = document.createElement('div');
+            card.className = `table-card ${table.isActive ? 'active' : 'idle'}`;
+            card.id = `table-${index}`;
+
+            const header = document.createElement('div');
+            header.className = 'table-header';
+            header.innerHTML = `
+                <div class="table-id">房间 ${table.room} - ${table.number}号桌</div>
+                <div class="status-light ${table.isActive ? 'active' : ''}"></div>
+            `;
+
+            const timer = document.createElement('div');
+            timer.className = 'timer';
+            timer.id = `timer-${index}`;
+            timer.textContent = formatTime(table.elapsedSeconds);
+
+            const fee = document.createElement('div');
+            fee.className = 'fee';
+            fee.id = `fee-${index}`;
+            fee.textContent = `¥${calculateFee(table.elapsedSeconds).toFixed(2)}`;
+
+            const buttonGroup = document.createElement('div');
+            buttonGroup.className = 'button-group';
+
+            if (table.isActive) {
+                const stopBtn = document.createElement('button');
+                stopBtn.className = 'btn btn-stop';
+                stopBtn.textContent = '结束';
+                stopBtn.onclick = () => stopTable(index);
+
+                const pauseBtn = document.createElement('button');
+                pauseBtn.className = 'btn btn-pause';
+                pauseBtn.textContent = '暂停';
+                pauseBtn.onclick = () => pauseTable(index);
+
+                buttonGroup.appendChild(pauseBtn);
+                buttonGroup.appendChild(stopBtn);
+            } else {
+                const startBtn = document.createElement('button');
+                startBtn.className = 'btn btn-start';
+                startBtn.textContent = '开台';
+                startBtn.onclick = () => startTable(index);
+
+                buttonGroup.appendChild(startBtn);
+            }
+
+            card.appendChild(header);
+            card.appendChild(timer);
+            card.appendChild(fee);
+            card.appendChild(buttonGroup);
+
+            return card;
+        }
+
+        // 开始计时
+        function startTable(index) {
+            const table = state.tables[index];
+            table.isActive = true;
+            table.startTime = Date.now() - (table.elapsedSeconds * 1000);
+            saveState();
+            renderTables();
+        }
+
+        // 暂停计时
+        function pauseTable(index) {
+            const table = state.tables[index];
+            if (table.isActive && table.startTime) {
+                table.elapsedSeconds = Math.floor((Date.now() - table.startTime) / 1000);
+                table.isActive = false;
+                table.startTime = null;
+                saveState();
+                renderTables();
+            }
+        }
+
+        // 结束计时
+        function stopTable(index) {
+            const table = state.tables[index];
+            if (table.startTime) {
+                table.elapsedSeconds = Math.floor((Date.now() - table.startTime) / 1000);
+            }
+
+            const fee = calculateFee(table.elapsedSeconds);
+            state.totalIncome += fee;
+
+            showModal(fee);
+
+            // 重置桌子
+            table.isActive = false;
+            table.startTime = null;
+            table.elapsedSeconds = 0;
+
+            saveState();
+            renderTables();
+        }
+
+        // 计算费用
+        function calculateFee(seconds) {
+            return (seconds / 3600) * PRICE_PER_HOUR;
+        }
+
+        // 格式化时间
+        function formatTime(seconds) {
+            const hours = Math.floor(seconds / 3600);
+            const minutes = Math.floor((seconds % 3600) / 60);
+            const secs = seconds % 60;
+            return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+        }
+
+        // 显示模态框
+        function showModal(fee) {
+            document.getElementById('modalFee').textContent = `¥${fee.toFixed(2)}`;
+            document.getElementById('modal').classList.add('show');
+        }
+
+        // 关闭模态框
+        function closeModal() {
+            document.getElementById('modal').classList.remove('show');
+        }
+
+        // 更新统计信息
+        function updateStats() {
+            const activeCount = Object.values(state.tables).filter(t => t.isActive).length;
+            document.getElementById('activeCount').textContent = activeCount;
+            document.getElementById('totalIncome').textContent = `¥${state.totalIncome.toFixed(2)}`;
+        }
+
+        // 更新循环
+        function startUpdateLoop() {
+            setInterval(() => {
+                let needsRender = false;
+
+                Object.keys(state.tables).forEach(index => {
+                    const table = state.tables[index];
+                    if (table.isActive && table.startTime) {
+                        const elapsed = Math.floor((Date.now() - table.startTime) / 1000);
+                        const timerEl = document.getElementById(`timer-${index}`);
+                        const feeEl = document.getElementById(`fee-${index}`);
+
+                        if (timerEl) timerEl.textContent = formatTime(elapsed);
+                        if (feeEl) feeEl.textContent = `¥${calculateFee(elapsed).toFixed(2)}`;
+                    }
+                });
+
+                updateStats();
+            }, UPDATE_INTERVAL);
+        }
+
+        // 重置所有数据
+        function resetAllData() {
+            if (confirm('确定要重置所有数据吗？这将清除所有计时和收入记录。')) {
+                state.totalIncome = 0;
+                Object.keys(state.tables).forEach(index => {
+                    state.tables[index].isActive = false;
+                    state.tables[index].startTime = null;
+                    state.tables[index].elapsedSeconds = 0;
+                });
+                saveState();
+                renderTables();
+            }
+        }
+
+        // 页面加载时初始化
+        window.addEventListener('load', init);
+
+        // 页面卸载时保存状态
+        window.addEventListener('beforeunload', saveState);
+    </script>
+</body>
+</html>
