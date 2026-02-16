@@ -767,7 +767,14 @@
             const table = state.tables[index];
             table.waterFee += amount;
             saveState();
-            renderTables();
+            
+            // 只更新水费显示，不重新渲染整个表格
+            const waterFeeEl = document.getElementById(`water-fee-${index}`);
+            if (waterFeeEl) {
+                waterFeeEl.textContent = table.waterFee > 0 ? `水费：¥${table.waterFee.toFixed(2)}` : '';
+            }
+            
+            updateStats();
         }
 
         // 计算费用
