@@ -13,107 +13,189 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 25%, #f9ca24 50%, #6c5ce7 75%, #a29bfe 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
             min-height: 100vh;
             padding: 20px;
         }
 
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
         }
 
         .header {
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,240,245,0.95) 100%);
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+            border: 3px solid #ff6b6b;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: "🎊";
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 30px;
+            opacity: 0.3;
+        }
+
+        .header::after {
+            content: "🎉";
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            font-size: 30px;
+            opacity: 0.3;
         }
 
         .header h1 {
-            color: #333;
-            margin-bottom: 15px;
-            font-size: 24px;
+            color: #ff6b6b;
+            margin-bottom: 20px;
+            font-size: 32px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
         }
 
-        .stats {
+        .stats-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
             gap: 15px;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
 
         .stat-item {
-            background: #f5f5f5;
-            padding: 12px;
-            border-radius: 6px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 15px;
+            border-radius: 10px;
             text-align: center;
+            color: white;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+
+        .stat-item.water {
+            background: linear-gradient(135deg, #00b4db 0%, #0083b0 100%);
+            box-shadow: 0 4px 15px rgba(0, 180, 219, 0.4);
+        }
+
+        .stat-item.mahjong {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
         }
 
         .stat-label {
-            font-size: 12px;
-            color: #666;
-            margin-bottom: 5px;
+            font-size: 13px;
+            opacity: 0.9;
+            margin-bottom: 8px;
+            font-weight: 600;
         }
 
         .stat-value {
-            font-size: 24px;
+            font-size: 28px;
             font-weight: bold;
-            color: #667eea;
         }
 
         .price-tip {
             font-size: 14px;
-            color: #666;
-            padding: 10px;
-            background: #fff3cd;
-            border-left: 4px solid #ffc107;
-            border-radius: 4px;
+            color: #333;
+            padding: 12px;
+            background: linear-gradient(135deg, #fff9e6 0%, #ffe6e6 100%);
+            border-left: 5px solid #ff6b6b;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            font-weight: 600;
         }
 
         .controls {
             display: flex;
             gap: 10px;
-            margin-top: 15px;
+            flex-wrap: wrap;
         }
 
-        button.reset-btn {
-            padding: 8px 16px;
-            background: #dc3545;
-            color: white;
+        .controls button {
+            padding: 10px 20px;
             border: none;
-            border-radius: 4px;
+            border-radius: 8px;
             cursor: pointer;
             font-size: 14px;
-            transition: background 0.3s;
+            font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
         }
 
-        button.reset-btn:hover {
-            background: #c82333;
+        .reset-btn {
+            background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+            color: white;
+        }
+
+        .reset-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(220, 53, 69, 0.4);
+        }
+
+        .water-btn {
+            background: linear-gradient(135deg, #00b4db 0%, #0083b0 100%);
+            color: white;
+        }
+
+        .water-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 180, 219, 0.4);
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 280px;
+            gap: 20px;
         }
 
         .tables-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 20px;
         }
 
         .table-card {
-            background: white;
-            border-radius: 8px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.98) 0%, rgba(255,250,240,0.98) 100%);
+            border-radius: 15px;
             padding: 20px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
             transition: all 0.3s ease;
+            border: 3px solid #ddd;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .table-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255,215,0,0.1) 0%, transparent 100%);
+            pointer-events: none;
         }
 
         .table-card.active {
-            box-shadow: 0 0 20px rgba(255, 193, 7, 0.5);
-            border: 2px solid #ffc107;
+            box-shadow: 0 0 30px rgba(255, 193, 7, 0.6);
+            border: 3px solid #ffc107;
+            transform: translateY(-5px);
         }
 
         .table-card.idle {
-            border: 2px solid #ddd;
+            border: 3px solid #ddd;
         }
 
         .table-header {
@@ -121,98 +203,189 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
         }
 
         .table-id {
-            font-size: 18px;
+            font-size: 20px;
             font-weight: bold;
-            color: #333;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .status-light {
-            width: 20px;
-            height: 20px;
+            width: 24px;
+            height: 24px;
             border-radius: 50%;
             background: #ccc;
             transition: all 0.3s;
+            box-shadow: 0 0 0 3px rgba(0,0,0,0.1);
         }
 
         .status-light.active {
             background: #ffc107;
-            box-shadow: 0 0 10px #ffc107;
+            box-shadow: 0 0 15px #ffc107, 0 0 0 3px rgba(255,193,7,0.3);
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 15px #ffc107, 0 0 0 3px rgba(255,193,7,0.3); }
+            50% { box-shadow: 0 0 25px #ffc107, 0 0 0 6px rgba(255,193,7,0.5); }
+        }
+
+        .time-display {
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+            border-left: 3px solid #ff6b6b;
+        }
+
+        .time-display.active {
+            background: #fff3cd;
+            border-left-color: #ffc107;
         }
 
         .timer {
-            font-size: 32px;
+            font-size: 36px;
             font-weight: bold;
             text-align: center;
             color: #333;
             margin: 15px 0;
             font-family: 'Courier New', monospace;
+            position: relative;
+            z-index: 1;
         }
 
         .fee {
-            font-size: 24px;
+            font-size: 28px;
             text-align: center;
-            color: #28a745;
+            color: #ff6b6b;
             margin: 10px 0;
             font-weight: bold;
+            position: relative;
+            z-index: 1;
         }
 
         .button-group {
             display: flex;
             gap: 10px;
             margin-top: 15px;
+            position: relative;
+            z-index: 1;
         }
 
         .btn {
             flex: 1;
             padding: 12px;
             border: none;
-            border-radius: 6px;
-            font-size: 16px;
+            border-radius: 8px;
+            font-size: 14px;
             font-weight: bold;
             cursor: pointer;
             transition: all 0.3s;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
         }
 
         .btn-start {
-            background: #28a745;
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
             color: white;
         }
 
         .btn-start:hover {
-            background: #218838;
             transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(40, 167, 69, 0.3);
+            box-shadow: 0 6px 12px rgba(40, 167, 69, 0.4);
         }
 
         .btn-stop {
-            background: #dc3545;
+            background: linear-gradient(135deg, #dc3545 0%, #ff6b6b 100%);
             color: white;
         }
 
         .btn-stop:hover {
-            background: #c82333;
             transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(220, 53, 69, 0.3);
+            box-shadow: 0 6px 12px rgba(220, 53, 69, 0.4);
         }
 
         .btn-pause {
-            background: #ffc107;
+            background: linear-gradient(135deg, #ffc107 0%, #ff9800 100%);
             color: #333;
         }
 
         .btn-pause:hover {
-            background: #e0a800;
             transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(255, 193, 7, 0.3);
+            box-shadow: 0 6px 12px rgba(255, 193, 7, 0.4);
         }
 
         .btn:disabled {
             opacity: 0.5;
             cursor: not-allowed;
             transform: none;
+        }
+
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .water-panel {
+            background: linear-gradient(135deg, rgba(255,255,255,0.98) 0%, rgba(240,248,255,0.98) 100%);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            border: 3px solid #00b4db;
+        }
+
+        .water-panel h3 {
+            color: #00b4db;
+            margin-bottom: 15px;
+            font-size: 18px;
+            text-align: center;
+        }
+
+        .water-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .water-btn-item {
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 16px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .water-btn-2 {
+            background: linear-gradient(135deg, #00b4db 0%, #0083b0 100%);
+            color: white;
+        }
+
+        .water-btn-2:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 180, 219, 0.4);
+        }
+
+        .water-btn-5 {
+            background: linear-gradient(135deg, #0083b0 0%, #006494 100%);
+            color: white;
+        }
+
+        .water-btn-5:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 131, 176, 0.4);
         }
 
         .modal {
@@ -222,7 +395,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.5);
+            background: rgba(0,0,0,0.6);
             justify-content: center;
             align-items: center;
             z-index: 1000;
@@ -233,38 +406,70 @@
         }
 
         .modal-content {
-            background: white;
-            padding: 30px;
-            border-radius: 8px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.98) 0%, rgba(255,250,240,0.98) 100%);
+            padding: 40px;
+            border-radius: 15px;
             text-align: center;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            box-shadow: 0 8px 40px rgba(0,0,0,0.3);
+            border: 3px solid #ff6b6b;
+            max-width: 400px;
         }
 
         .modal-content h2 {
-            color: #333;
-            margin-bottom: 15px;
+            color: #ff6b6b;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .modal-time {
+            font-size: 14px;
+            color: #666;
+            margin: 15px 0;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 3px solid #ff6b6b;
         }
 
         .modal-fee {
-            font-size: 36px;
-            color: #28a745;
+            font-size: 40px;
+            color: #ff6b6b;
             font-weight: bold;
             margin: 20px 0;
         }
 
         .modal-btn {
-            padding: 10px 30px;
-            background: #667eea;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             border: none;
-            border-radius: 6px;
+            border-radius: 8px;
             cursor: pointer;
             font-size: 16px;
+            font-weight: bold;
             margin-top: 20px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
         }
 
         .modal-btn:hover {
-            background: #5568d3;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        @media (max-width: 1024px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                flex-direction: row;
+                grid-column: 1 / -1;
+            }
+
+            .water-panel {
+                flex: 1;
+            }
         }
 
         @media (max-width: 768px) {
@@ -273,15 +478,19 @@
             }
 
             .header h1 {
-                font-size: 20px;
-            }
-
-            .timer {
                 font-size: 24px;
             }
 
+            .timer {
+                font-size: 28px;
+            }
+
             .fee {
-                font-size: 20px;
+                font-size: 22px;
+            }
+
+            .stats-container {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
     </style>
@@ -289,8 +498,8 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>🀄 麻将桌计时管理系统</h1>
-            <div class="stats">
+            <h1>🀄 麻将桌计时管理系统 🎉</h1>
+            <div class="stats-container">
                 <div class="stat-item">
                     <div class="stat-label">总桌数</div>
                     <div class="stat-value">7</div>
@@ -299,23 +508,44 @@
                     <div class="stat-label">使用中</div>
                     <div class="stat-value" id="activeCount">0</div>
                 </div>
+                <div class="stat-item mahjong">
+                    <div class="stat-label">麻将费用</div>
+                    <div class="stat-value" id="mahjongIncome">¥0.00</div>
+                </div>
+                <div class="stat-item water">
+                    <div class="stat-label">水费收入</div>
+                    <div class="stat-value" id="waterIncome">¥0.00</div>
+                </div>
                 <div class="stat-item">
-                    <div class="stat-label">今日收入</div>
+                    <div class="stat-label">总收入</div>
                     <div class="stat-value" id="totalIncome">¥0.00</div>
                 </div>
             </div>
-            <div class="price-tip">💰 计费标准：10元/小时</div>
+            <div class="price-tip">💰 计费标准：麻将10元/小时 | 水费：2元/5元</div>
             <div class="controls">
-                <button class="reset-btn" onclick="resetAllData()">重置所有数据</button>
+                <button class="reset-btn" onclick="resetAllData()">🔄 重置所有数据</button>
             </div>
         </div>
 
-        <div class="tables-grid" id="tablesContainer"></div>
+        <div class="main-content">
+            <div class="tables-grid" id="tablesContainer"></div>
+            
+            <div class="sidebar">
+                <div class="water-panel">
+                    <h3>💧 水费记录</h3>
+                    <div class="water-buttons">
+                        <button class="water-btn-item water-btn-2" onclick="addWaterFee(2)">➕ 加2元水费</button>
+                        <button class="water-btn-item water-btn-5" onclick="addWaterFee(5)">➕ 加5元水费</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="modal" id="modal">
         <div class="modal-content">
-            <h2>本次消费</h2>
+            <h2>✨ 本次消费 ✨</h2>
+            <div class="modal-time" id="modalTime"></div>
             <div class="modal-fee" id="modalFee">¥0.00</div>
             <button class="modal-btn" onclick="closeModal()">确定</button>
         </div>
@@ -339,7 +569,8 @@
         // 状态管理
         let state = {
             tables: {},
-            totalIncome: 0
+            mahjongIncome: 0,
+            waterIncome: 0
         };
 
         // 初始化
@@ -363,7 +594,8 @@
                         number: config.number,
                         isActive: false,
                         startTime: null,
-                        elapsedSeconds: 0
+                        elapsedSeconds: 0,
+                        startTimeDisplay: null
                     };
                 });
             }
@@ -401,6 +633,15 @@
                 <div class="status-light ${table.isActive ? 'active' : ''}"></div>
             `;
 
+            const timeDisplay = document.createElement('div');
+            timeDisplay.className = `time-display ${table.isActive ? 'active' : ''}`;
+            timeDisplay.id = `time-${index}`;
+            if (table.startTimeDisplay) {
+                timeDisplay.textContent = `开台：${table.startTimeDisplay}`;
+            } else {
+                timeDisplay.textContent = '未开台';
+            }
+
             const timer = document.createElement('div');
             timer.className = 'timer';
             timer.id = `timer-${index}`;
@@ -437,6 +678,7 @@
             }
 
             card.appendChild(header);
+            card.appendChild(timeDisplay);
             card.appendChild(timer);
             card.appendChild(fee);
             card.appendChild(buttonGroup);
@@ -449,6 +691,7 @@
             const table = state.tables[index];
             table.isActive = true;
             table.startTime = Date.now() - (table.elapsedSeconds * 1000);
+            table.startTimeDisplay = formatDateTime(new Date(table.startTime));
             saveState();
             renderTables();
         }
@@ -468,22 +711,39 @@
         // 结束计时
         function stopTable(index) {
             const table = state.tables[index];
+            let endTime = new Date();
+            
             if (table.startTime) {
                 table.elapsedSeconds = Math.floor((Date.now() - table.startTime) / 1000);
             }
 
             const fee = calculateFee(table.elapsedSeconds);
-            state.totalIncome += fee;
+            state.mahjongIncome += fee;
 
-            showModal(fee);
+            const startTimeStr = table.startTimeDisplay || '未记录';
+            const endTimeStr = formatDateTime(endTime);
+            
+            showModal(fee, startTimeStr, endTimeStr);
 
             // 重置桌子
             table.isActive = false;
             table.startTime = null;
             table.elapsedSeconds = 0;
+            table.startTimeDisplay = null;
 
             saveState();
             renderTables();
+        }
+
+        // 添加水费
+        function addWaterFee(amount) {
+            state.waterIncome += amount;
+            saveState();
+            updateStats();
+            
+            // 显示提示
+            const msg = `已添加${amount}元水费`;
+            alert(msg);
         }
 
         // 计算费用
@@ -499,8 +759,17 @@
             return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
         }
 
+        // 格式化日期时间
+        function formatDateTime(date) {
+            const hours = String(date.getHours()).padStart(2, '0');
+            const minutes = String(date.getMinutes()).padStart(2, '0');
+            const seconds = String(date.getSeconds()).padStart(2, '0');
+            return `${hours}:${minutes}:${seconds}`;
+        }
+
         // 显示模态框
-        function showModal(fee) {
+        function showModal(fee, startTime, endTime) {
+            document.getElementById('modalTime').textContent = `${startTime} → ${endTime}`;
             document.getElementById('modalFee').textContent = `¥${fee.toFixed(2)}`;
             document.getElementById('modal').classList.add('show');
         }
@@ -514,14 +783,14 @@
         function updateStats() {
             const activeCount = Object.values(state.tables).filter(t => t.isActive).length;
             document.getElementById('activeCount').textContent = activeCount;
-            document.getElementById('totalIncome').textContent = `¥${state.totalIncome.toFixed(2)}`;
+            document.getElementById('mahjongIncome').textContent = `¥${state.mahjongIncome.toFixed(2)}`;
+            document.getElementById('waterIncome').textContent = `¥${state.waterIncome.toFixed(2)}`;
+            document.getElementById('totalIncome').textContent = `¥${(state.mahjongIncome + state.waterIncome).toFixed(2)}`;
         }
 
         // 更新循环
         function startUpdateLoop() {
             setInterval(() => {
-                let needsRender = false;
-
                 Object.keys(state.tables).forEach(index => {
                     const table = state.tables[index];
                     if (table.isActive && table.startTime) {
@@ -541,11 +810,13 @@
         // 重置所有数据
         function resetAllData() {
             if (confirm('确定要重置所有数据吗？这将清除所有计时和收入记录。')) {
-                state.totalIncome = 0;
+                state.mahjongIncome = 0;
+                state.waterIncome = 0;
                 Object.keys(state.tables).forEach(index => {
                     state.tables[index].isActive = false;
                     state.tables[index].startTime = null;
                     state.tables[index].elapsedSeconds = 0;
+                    state.tables[index].startTimeDisplay = null;
                 });
                 saveState();
                 renderTables();
