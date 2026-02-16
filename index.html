@@ -385,6 +385,44 @@
             margin: 20px 0;
         }
 
+        .fee-detail {
+            font-size: 14px;
+            color: #666;
+            margin: 15px 0;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            text-align: left;
+            line-height: 1.8;
+        }
+
+        .fee-detail div {
+            display: flex;
+            justify-content: space-between;
+            margin: 5px 0;
+        }
+
+        .fee-detail .fee-label {
+            font-weight: 600;
+        }
+
+        .fee-detail .fee-value {
+            color: #ff6b6b;
+            font-weight: bold;
+        }
+
+        .fee-detail .total-line {
+            border-top: 2px solid #ddd;
+            padding-top: 10px;
+            margin-top: 10px;
+            font-size: 16px;
+        }
+
+        .fee-detail .total-line .fee-value {
+            color: #ff6b6b;
+            font-size: 18px;
+        }
+
         .modal-btn {
             padding: 12px 30px;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -466,7 +504,20 @@
         <div class="modal-content">
             <h2>✨ 本次消费 ✨</h2>
             <div class="modal-time" id="modalTime"></div>
-            <div class="modal-fee" id="modalFee">¥0.00</div>
+            <div class="fee-detail" id="feeDetail">
+                <div>
+                    <span class="fee-label">台费：</span>
+                    <span class="fee-value" id="modalTableFee">¥0.00</span>
+                </div>
+                <div>
+                    <span class="fee-label">水费：</span>
+                    <span class="fee-value" id="modalWaterFee">¥0.00</span>
+                </div>
+                <div class="total-line">
+                    <span class="fee-label">总费用：</span>
+                    <span class="fee-value" id="modalTotalFee">¥0.00</span>
+                </div>
+            </div>
             <button class="modal-btn" onclick="closeModal()">确定</button>
         </div>
     </div>
@@ -697,7 +748,7 @@
             const endTimeStr = formatDateTime(endTime);
             
             console.log('麻将费用:', fee, '水费:', table.waterFee);
-            showModal(fee, startTimeStr, endTimeStr);
+            showModal(fee, table.waterFee, startTimeStr, endTimeStr);
 
             // 重置桌子
             table.isActive = false;
@@ -741,9 +792,12 @@
         }
 
         // 显示模态框
-        function showModal(fee, startTime, endTime) {
+        function showModal(tableFee, waterFee, startTime, endTime) {
+            const totalFee = tableFee + waterFee;
             document.getElementById('modalTime').textContent = `${startTime} → ${endTime}`;
-            document.getElementById('modalFee').textContent = `¥${fee.toFixed(2)}`;
+            document.getElementById('modalTableFee').textContent = `¥${tableFee.toFixed(2)}`;
+            document.getElementById('modalWaterFee').textContent = `¥${waterFee.toFixed(2)}`;
+            document.getElementById('modalTotalFee').textContent = `¥${totalFee.toFixed(2)}`;
             document.getElementById('modal').classList.add('show');
         }
 
