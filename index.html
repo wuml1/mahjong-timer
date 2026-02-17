@@ -12,106 +12,99 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 25%, #f9ca24 50%, #6c5ce7 75%, #a29bfe 100%);
-            background-size: 400% 400%;
-            animation: gradientShift 15s ease infinite;
+            font-family: 'Microsoft YaHei', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
             min-height: 100vh;
             padding: 20px;
         }
 
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
         .container {
-            max-width: 1400px;
+            max-width: 1600px;
             margin: 0 auto;
         }
 
         .header {
-            background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,240,245,0.95) 100%);
-            padding: 25px;
-            border-radius: 15px;
-            margin-bottom: 25px;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.15);
-            border: 3px solid #ff6b6b;
+            background: linear-gradient(135deg, #e94560 0%, #d63447 100%);
+            padding: 30px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(233, 69, 96, 0.3);
+            border: 3px solid #ff6b7a;
             position: relative;
             overflow: hidden;
         }
 
         .header::before {
-            content: "🎊";
+            content: "🀄";
             position: absolute;
             top: 10px;
-            left: 10px;
-            font-size: 30px;
-            opacity: 0.3;
+            left: 20px;
+            font-size: 50px;
+            opacity: 0.15;
         }
 
         .header::after {
-            content: "🎉";
+            content: "🎰";
             position: absolute;
             bottom: 10px;
-            right: 10px;
-            font-size: 30px;
-            opacity: 0.3;
+            right: 20px;
+            font-size: 50px;
+            opacity: 0.15;
         }
 
         .header h1 {
-            color: #ff6b6b;
+            color: white;
             margin-bottom: 20px;
-            font-size: 32px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            font-size: 36px;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+            font-weight: bold;
         }
 
         .stats-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
             gap: 15px;
             margin-bottom: 20px;
         }
 
         .stat-item {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: rgba(255,255,255,0.15);
             padding: 15px;
-            border-radius: 10px;
+            border-radius: 12px;
             text-align: center;
             color: white;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
-            border: 2px solid rgba(255,255,255,0.3);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255,255,255,0.2);
         }
 
         .stat-item.water {
-            background: linear-gradient(135deg, #00b4db 0%, #0083b0 100%);
-            box-shadow: 0 4px 15px rgba(0, 180, 219, 0.4);
+            background: rgba(0, 180, 219, 0.2);
+            border-color: rgba(0, 180, 219, 0.4);
         }
 
         .stat-item.mahjong {
-            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
-            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+            background: rgba(233, 69, 96, 0.2);
+            border-color: rgba(233, 69, 96, 0.4);
         }
 
         .stat-label {
-            font-size: 13px;
+            font-size: 12px;
             opacity: 0.9;
             margin-bottom: 8px;
             font-weight: 600;
         }
 
         .stat-value {
-            font-size: 28px;
+            font-size: 26px;
             font-weight: bold;
         }
 
         .price-tip {
             font-size: 14px;
-            color: #333;
+            color: white;
             padding: 12px;
-            background: linear-gradient(135deg, #fff9e6 0%, #ffe6e6 100%);
-            border-left: 5px solid #ff6b6b;
+            background: rgba(0,0,0,0.2);
+            border-left: 5px solid #ff6b7a;
             border-radius: 6px;
             margin-bottom: 15px;
             font-weight: 600;
@@ -124,14 +117,14 @@
         }
 
         .controls button {
-            padding: 10px 20px;
+            padding: 12px 20px;
             border: none;
             border-radius: 8px;
             cursor: pointer;
             font-size: 14px;
             font-weight: bold;
             transition: all 0.3s;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
         }
 
         .reset-btn {
@@ -141,41 +134,65 @@
 
         .reset-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(220, 53, 69, 0.4);
+            box-shadow: 0 6px 16px rgba(220, 53, 69, 0.4);
+        }
+
+        .export-btn {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+        }
+
+        .export-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(40, 167, 69, 0.4);
+        }
+
+        .import-btn {
+            background: linear-gradient(135deg, #ffc107 0%, #ff9800 100%);
+            color: #333;
+        }
+
+        .import-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(255, 193, 7, 0.4);
+        }
+
+        #importFile {
+            display: none;
         }
 
         .tables-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
         }
 
         .table-card {
-            background: linear-gradient(135deg, rgba(255,255,255,0.98) 0%, rgba(255,250,240,0.98) 100%);
-            border-radius: 15px;
-            padding: 20px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            background: linear-gradient(135deg, #2d2d44 0%, #1f1f2e 100%);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
             transition: all 0.3s ease;
-            border: 3px solid #ddd;
+            border: 3px solid #404050;
             position: relative;
             overflow: hidden;
         }
 
         .table-card::before {
-            content: "";
+            content: "🀄";
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(255,215,0,0.1) 0%, transparent 100%);
-            pointer-events: none;
+            top: -20px;
+            right: -20px;
+            font-size: 100px;
+            opacity: 0.05;
         }
 
         .table-card.active {
-            box-shadow: 0 0 30px rgba(255, 193, 7, 0.6);
-            border: 3px solid #ffc107;
-            transform: translateY(-5px);
+            box-shadow: 0 0 40px rgba(233, 69, 96, 0.6);
+            border: 3px solid #e94560;
+            transform: translateY(-8px);
+            background: linear-gradient(135deg, #3d3d54 0%, #2f2f3e 100%);
         }
 
         .table-header {
@@ -188,67 +205,75 @@
         }
 
         .table-id {
-            font-size: 20px;
+            font-size: 22px;
             font-weight: bold;
-            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: #e94560;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .table-id::before {
+            content: "🎰";
+            font-size: 24px;
         }
 
         .status-light {
-            width: 24px;
-            height: 24px;
+            width: 28px;
+            height: 28px;
             border-radius: 50%;
-            background: #ccc;
+            background: #404050;
             transition: all 0.3s;
-            box-shadow: 0 0 0 3px rgba(0,0,0,0.1);
+            box-shadow: 0 0 0 3px rgba(0,0,0,0.3);
+            border: 2px solid #505060;
         }
 
         .status-light.active {
             background: #ffc107;
-            box-shadow: 0 0 15px #ffc107, 0 0 0 3px rgba(255,193,7,0.3);
+            box-shadow: 0 0 20px #ffc107, 0 0 0 3px rgba(255,193,7,0.3);
             animation: pulse 1.5s infinite;
         }
 
         @keyframes pulse {
-            0%, 100% { box-shadow: 0 0 15px #ffc107, 0 0 0 3px rgba(255,193,7,0.3); }
-            50% { box-shadow: 0 0 25px #ffc107, 0 0 0 6px rgba(255,193,7,0.5); }
+            0%, 100% { box-shadow: 0 0 20px #ffc107, 0 0 0 3px rgba(255,193,7,0.3); }
+            50% { box-shadow: 0 0 30px #ffc107, 0 0 0 6px rgba(255,193,7,0.5); }
         }
 
         .time-display {
-            background: #f8f9fa;
-            padding: 10px;
-            border-radius: 8px;
+            background: rgba(0,0,0,0.3);
+            padding: 12px;
+            border-radius: 10px;
             font-size: 12px;
-            color: #666;
-            margin-bottom: 10px;
+            color: #b0b0c0;
+            margin-bottom: 12px;
             position: relative;
             z-index: 1;
-            border-left: 3px solid #ff6b6b;
+            border-left: 3px solid #e94560;
         }
 
         .time-display.active {
-            background: #fff3cd;
+            background: rgba(233, 69, 96, 0.2);
             border-left-color: #ffc107;
+            color: #ffc107;
         }
 
         .timer {
-            font-size: 36px;
+            font-size: 42px;
             font-weight: bold;
             text-align: center;
-            color: #333;
-            margin: 15px 0;
+            color: #ffc107;
+            margin: 18px 0;
             font-family: 'Courier New', monospace;
             position: relative;
             z-index: 1;
+            text-shadow: 0 2px 8px rgba(255, 193, 7, 0.3);
         }
 
         .fee {
-            font-size: 28px;
+            font-size: 32px;
             text-align: center;
-            color: #ff6b6b;
-            margin: 10px 0;
+            color: #e94560;
+            margin: 12px 0;
             font-weight: bold;
             position: relative;
             z-index: 1;
@@ -258,7 +283,7 @@
             font-size: 14px;
             text-align: center;
             color: #00b4db;
-            margin: 5px 0;
+            margin: 8px 0;
             font-weight: bold;
             position: relative;
             z-index: 1;
@@ -267,7 +292,7 @@
         .button-group {
             display: flex;
             gap: 10px;
-            margin-top: 15px;
+            margin-top: 18px;
             position: relative;
             z-index: 1;
             flex-wrap: wrap;
@@ -276,14 +301,14 @@
         .btn {
             flex: 1;
             min-width: 70px;
-            padding: 10px;
+            padding: 12px;
             border: none;
-            border-radius: 8px;
+            border-radius: 10px;
             font-size: 13px;
             font-weight: bold;
             cursor: pointer;
             transition: all 0.3s;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
         }
 
         .btn-start {
@@ -293,17 +318,17 @@
 
         .btn-start:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(40, 167, 69, 0.4);
+            box-shadow: 0 6px 16px rgba(40, 167, 69, 0.4);
         }
 
         .btn-stop {
-            background: linear-gradient(135deg, #dc3545 0%, #ff6b6b 100%);
+            background: linear-gradient(135deg, #e94560 0%, #d63447 100%);
             color: white;
         }
 
         .btn-stop:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(220, 53, 69, 0.4);
+            box-shadow: 0 6px 16px rgba(233, 69, 96, 0.4);
         }
 
         .btn-pause {
@@ -313,20 +338,20 @@
 
         .btn-pause:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(255, 193, 7, 0.4);
+            box-shadow: 0 6px 16px rgba(255, 193, 7, 0.4);
         }
 
         .btn-water {
             background: linear-gradient(135deg, #00b4db 0%, #0083b0 100%);
             color: white;
             font-size: 12px;
-            padding: 8px;
+            padding: 10px;
             flex: 0.5;
         }
 
         .btn-water:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(0, 180, 219, 0.4);
+            box-shadow: 0 6px 16px rgba(0, 180, 219, 0.4);
         }
 
         .btn:disabled {
@@ -342,7 +367,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.6);
+            background: rgba(0,0,0,0.7);
             justify-content: center;
             align-items: center;
             z-index: 1000;
@@ -353,44 +378,37 @@
         }
 
         .modal-content {
-            background: linear-gradient(135deg, rgba(255,255,255,0.98) 0%, rgba(255,250,240,0.98) 100%);
+            background: linear-gradient(135deg, #2d2d44 0%, #1f1f2e 100%);
             padding: 40px;
-            border-radius: 15px;
+            border-radius: 20px;
             text-align: center;
-            box-shadow: 0 8px 40px rgba(0,0,0,0.3);
-            border: 3px solid #ff6b6b;
-            max-width: 400px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.5);
+            border: 3px solid #e94560;
+            max-width: 420px;
         }
 
         .modal-content h2 {
-            color: #ff6b6b;
+            color: #e94560;
             margin-bottom: 20px;
-            font-size: 24px;
+            font-size: 26px;
         }
 
         .modal-time {
             font-size: 14px;
-            color: #666;
+            color: #b0b0c0;
             margin: 15px 0;
             padding: 10px;
-            background: #f8f9fa;
+            background: rgba(0,0,0,0.3);
             border-radius: 8px;
-            border-left: 3px solid #ff6b6b;
-        }
-
-        .modal-fee {
-            font-size: 40px;
-            color: #ff6b6b;
-            font-weight: bold;
-            margin: 20px 0;
+            border-left: 3px solid #e94560;
         }
 
         .fee-detail {
             font-size: 14px;
-            color: #666;
+            color: #b0b0c0;
             margin: 15px 0;
-            padding: 10px;
-            background: #f8f9fa;
+            padding: 15px;
+            background: rgba(0,0,0,0.3);
             border-radius: 8px;
             text-align: left;
             line-height: 1.8;
@@ -399,7 +417,7 @@
         .fee-detail div {
             display: flex;
             justify-content: space-between;
-            margin: 5px 0;
+            margin: 8px 0;
         }
 
         .fee-detail .fee-label {
@@ -407,39 +425,39 @@
         }
 
         .fee-detail .fee-value {
-            color: #ff6b6b;
+            color: #ffc107;
             font-weight: bold;
         }
 
         .fee-detail .total-line {
-            border-top: 2px solid #ddd;
-            padding-top: 10px;
-            margin-top: 10px;
+            border-top: 2px solid #505060;
+            padding-top: 12px;
+            margin-top: 12px;
             font-size: 16px;
         }
 
         .fee-detail .total-line .fee-value {
-            color: #ff6b6b;
+            color: #e94560;
             font-size: 18px;
         }
 
         .modal-btn {
             padding: 12px 30px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #e94560 0%, #d63447 100%);
             color: white;
             border: none;
-            border-radius: 8px;
+            border-radius: 10px;
             cursor: pointer;
             font-size: 16px;
             font-weight: bold;
             margin-top: 20px;
             transition: all 0.3s;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
         }
 
         .modal-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 6px 16px rgba(233, 69, 96, 0.4);
         }
 
         @media (max-width: 768px) {
@@ -448,15 +466,15 @@
             }
 
             .header h1 {
-                font-size: 24px;
-            }
-
-            .timer {
                 font-size: 28px;
             }
 
+            .timer {
+                font-size: 32px;
+            }
+
             .fee {
-                font-size: 22px;
+                font-size: 24px;
             }
 
             .stats-container {
@@ -468,7 +486,7 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>🀄 麻将桌计时管理系统 🎉</h1>
+            <h1>🀄 麻将桌计时管理系统 🎰</h1>
             <div class="stats-container">
                 <div class="stat-item">
                     <div class="stat-label">总桌数</div>
@@ -493,6 +511,9 @@
             </div>
             <div class="price-tip">💰 计费标准：麻将10元/小时 | 水费：2元/5元</div>
             <div class="controls">
+                <button class="export-btn" onclick="exportData()">💾 导出数据</button>
+                <button class="import-btn" onclick="document.getElementById('importFile').click()">📂 导入数据</button>
+                <input type="file" id="importFile" accept=".json" onchange="importData(event)">
                 <button class="reset-btn" onclick="resetAllData()">🔄 重置所有数据</button>
             </div>
         </div>
@@ -534,10 +555,9 @@
             { room: 202, number: 1 }
         ];
 
-        const PRICE_PER_HOUR = 10; // 元/小时
-        const UPDATE_INTERVAL = 1000; // 1秒更新一次
+        const PRICE_PER_HOUR = 10;
+        const UPDATE_INTERVAL = 1000;
 
-        // 状态管理
         let state = {
             tables: {},
             mahjongIncome: 0,
@@ -546,32 +566,26 @@
 
         let updateTimer = null;
 
-        // 初始化
         function init() {
-            console.log('初始化应用...');
             loadState();
             renderTables();
             startUpdateLoop();
         }
 
-        // 加载状态
         function loadState() {
             const saved = localStorage.getItem('mahjongState');
             if (saved) {
                 try {
                     state = JSON.parse(saved);
-                    console.log('已加载保存的状态:', state);
                 } catch (e) {
                     console.error('解析保存状态失败:', e);
                     initializeState();
                 }
             } else {
-                console.log('初始化新状态');
                 initializeState();
             }
         }
 
-        // 初始化状态
         function initializeState() {
             state.tables = {};
             state.mahjongIncome = 0;
@@ -593,17 +607,50 @@
             saveState();
         }
 
-        // 保存状态
         function saveState() {
             try {
                 localStorage.setItem('mahjongState', JSON.stringify(state));
-                console.log('状态已保存');
             } catch (e) {
                 console.error('保存状态失败:', e);
             }
         }
 
-        // 渲染桌子
+        function exportData() {
+            const dataStr = JSON.stringify(state, null, 2);
+            const dataBlob = new Blob([dataStr], { type: 'application/json' });
+            const url = URL.createObjectURL(dataBlob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `麻将计时数据_${new Date().toISOString().slice(0, 10)}.json`;
+            link.click();
+            URL.revokeObjectURL(url);
+            alert('数据已导出！');
+        }
+
+        function importData(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const importedState = JSON.parse(e.target.result);
+                    if (importedState.tables && typeof importedState.mahjongIncome === 'number') {
+                        state = importedState;
+                        saveState();
+                        renderTables();
+                        alert('数据已成功导入！');
+                    } else {
+                        alert('文件格式不正确！');
+                    }
+                } catch (err) {
+                    alert('导入失败：' + err.message);
+                }
+            };
+            reader.readAsText(file);
+            event.target.value = '';
+        }
+
         function renderTables() {
             const container = document.getElementById('tablesContainer');
             container.innerHTML = '';
@@ -617,7 +664,6 @@
             updateStats();
         }
 
-        // 创建桌子卡片
         function createTableCard(table, index) {
             const card = document.createElement('div');
             card.className = `table-card ${table.isActive ? 'active' : ''}`;
@@ -626,7 +672,7 @@
             const header = document.createElement('div');
             header.className = 'table-header';
             header.innerHTML = `
-                <div class="table-id">房间 ${table.room} - ${table.number}号桌</div>
+                <div class="table-id">房间 ${table.room} - ${table.number}号</div>
                 <div class="status-light ${table.isActive ? 'active' : ''}"></div>
             `;
 
@@ -679,7 +725,6 @@
                 buttonGroup.appendChild(startBtn);
             }
 
-            // 添加水费按钮
             const waterBtn2 = document.createElement('button');
             waterBtn2.className = 'btn btn-water';
             waterBtn2.textContent = '+2元';
@@ -703,36 +748,28 @@
             return card;
         }
 
-        // 开始计时
         function startTable(index) {
-            console.log('开始计时桌子:', index);
             const table = state.tables[index];
             const now = Date.now();
             table.isActive = true;
             table.startTime = now - (table.elapsedSeconds * 1000);
             table.startTimeDisplay = formatDateTime(new Date(table.startTime));
-            console.log('开台时间:', table.startTimeDisplay, '开始时间戳:', table.startTime);
             saveState();
             renderTables();
         }
 
-        // 暂停计时
         function pauseTable(index) {
-            console.log('暂停计时桌子:', index);
             const table = state.tables[index];
             if (table.isActive && table.startTime) {
                 table.elapsedSeconds = Math.floor((Date.now() - table.startTime) / 1000);
                 table.isActive = false;
                 table.startTime = null;
-                console.log('已暂停，已计时秒数:', table.elapsedSeconds);
                 saveState();
                 renderTables();
             }
         }
 
-        // 结束计时
         function stopTable(index) {
-            console.log('结束计时桌子:', index);
             const table = state.tables[index];
             let endTime = new Date();
             
@@ -747,10 +784,8 @@
             const startTimeStr = table.startTimeDisplay || '未记录';
             const endTimeStr = formatDateTime(endTime);
             
-            console.log('麻将费用:', fee, '水费:', table.waterFee);
             showModal(fee, table.waterFee, startTimeStr, endTimeStr);
 
-            // 重置桌子
             table.isActive = false;
             table.startTime = null;
             table.elapsedSeconds = 0;
@@ -761,14 +796,11 @@
             renderTables();
         }
 
-        // 添加水费
         function addWaterFee(index, amount) {
-            console.log('为桌子', index, '添加', amount, '元水费');
             const table = state.tables[index];
             table.waterFee += amount;
             saveState();
             
-            // 只更新水费显示，不重新渲染整个表格
             const waterFeeEl = document.getElementById(`water-fee-${index}`);
             if (waterFeeEl) {
                 waterFeeEl.textContent = table.waterFee > 0 ? `水费：¥${table.waterFee.toFixed(2)}` : '';
@@ -777,12 +809,10 @@
             updateStats();
         }
 
-        // 计算费用
         function calculateFee(seconds) {
             return (seconds / 3600) * PRICE_PER_HOUR;
         }
 
-        // 格式化时间
         function formatTime(seconds) {
             const hours = Math.floor(seconds / 3600);
             const minutes = Math.floor((seconds % 3600) / 60);
@@ -790,7 +820,6 @@
             return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
         }
 
-        // 格式化日期时间
         function formatDateTime(date) {
             const hours = String(date.getHours()).padStart(2, '0');
             const minutes = String(date.getMinutes()).padStart(2, '0');
@@ -798,7 +827,6 @@
             return `${hours}:${minutes}:${seconds}`;
         }
 
-        // 显示模态框
         function showModal(tableFee, waterFee, startTime, endTime) {
             const totalFee = tableFee + waterFee;
             document.getElementById('modalTime').textContent = `${startTime} → ${endTime}`;
@@ -808,12 +836,10 @@
             document.getElementById('modal').classList.add('show');
         }
 
-        // 关闭模态框
         function closeModal() {
             document.getElementById('modal').classList.remove('show');
         }
 
-        // 更新统计信息
         function updateStats() {
             const activeCount = Object.values(state.tables).filter(t => t.isActive).length;
             document.getElementById('activeCount').textContent = activeCount;
@@ -822,9 +848,7 @@
             document.getElementById('totalIncome').textContent = `¥${(state.mahjongIncome + state.waterIncome).toFixed(2)}`;
         }
 
-        // 更新循环
         function startUpdateLoop() {
-            console.log('启动更新循环');
             if (updateTimer) {
                 clearInterval(updateTimer);
             }
@@ -851,7 +875,6 @@
             }, UPDATE_INTERVAL);
         }
 
-        // 重置所有数据
         function resetAllData() {
             if (confirm('确定要重置所有数据吗？这将清除所有计时和收入记录。')) {
                 state.mahjongIncome = 0;
@@ -868,10 +891,7 @@
             }
         }
 
-        // 页面加载时初始化
         window.addEventListener('load', init);
-
-        // 页面卸载时保存状态
         window.addEventListener('beforeunload', saveState);
     </script>
 </body>
