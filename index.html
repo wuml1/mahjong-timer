@@ -13,7 +13,7 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
-            background: #f5f7fa;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             padding: 24px;
         }
@@ -25,75 +25,87 @@
 
         .header {
             background: white;
-            padding: 32px;
-            border-radius: 16px;
-            margin-bottom: 32px;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
-            border: 1px solid #e5e7eb;
+            padding: 40px;
+            border-radius: 20px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
         }
 
         .header h1 {
             color: #1f2937;
-            margin-bottom: 24px;
-            font-size: 32px;
-            font-weight: 700;
-            letter-spacing: -0.5px;
+            margin-bottom: 30px;
+            font-size: 36px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .stats-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-            gap: 16px;
-            margin-bottom: 24px;
+            gap: 20px;
+            margin-bottom: 30px;
         }
 
         .stat-item {
-            background: linear-gradient(135deg, #f3f4f6 0%, #f9fafb 100%);
-            padding: 20px;
-            border-radius: 12px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 24px;
+            border-radius: 16px;
             text-align: center;
-            border: 1px solid #e5e7eb;
-            transition: all 0.2s;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            transition: all 0.3s;
         }
 
         .stat-item:hover {
-            border-color: #d1d5db;
-            background: linear-gradient(135deg, #f9fafb 0%, #ffffff 100%);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
         }
 
         .stat-label {
-            font-size: 12px;
+            font-size: 13px;
             color: #6b7280;
-            margin-bottom: 8px;
-            font-weight: 600;
+            margin-bottom: 10px;
+            font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 1px;
         }
 
         .stat-value {
-            font-size: 28px;
-            font-weight: 700;
+            font-size: 32px;
+            font-weight: 800;
             color: #1f2937;
         }
 
-        .stat-item.mahjong .stat-value {
-            color: #8b5cf6;
+        .stat-item.mahjong {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
         }
 
+        .stat-item.mahjong .stat-label,
+        .stat-item.mahjong .stat-value {
+            color: white;
+        }
+
+        .stat-item.water {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        .stat-item.water .stat-label,
         .stat-item.water .stat-value {
-            color: #06b6d4;
+            color: white;
         }
 
         .price-tip {
-            font-size: 14px;
-            color: #374151;
-            padding: 14px 18px;
-            background: #fef3c7;
-            border-left: 4px solid #fbbf24;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            font-weight: 500;
-            border: 1px solid #fcd34d;
+            font-size: 15px;
+            color: white;
+            padding: 16px 24px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.1) 100%);
+            border-left: 5px solid white;
+            border-radius: 12px;
+            margin-bottom: 24px;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
         }
 
         .controls {
@@ -103,51 +115,62 @@
         }
 
         .controls button {
-            padding: 10px 20px;
+            padding: 12px 24px;
             border: none;
-            border-radius: 8px;
+            border-radius: 10px;
             cursor: pointer;
             font-size: 14px;
-            font-weight: 600;
-            transition: all 0.2s;
-        }
-
-        .reset-btn {
+            font-weight: 700;
+            transition: all 0.3s;
             background: #ef4444;
             color: white;
+            box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);
         }
 
-        .reset-btn:hover {
+        .controls button:hover {
             background: #dc2626;
-            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(239, 68, 68, 0.4);
         }
 
         .tables-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+            gap: 24px;
             margin-bottom: 40px;
         }
 
         .table-card {
             background: white;
-            border-radius: 16px;
-            padding: 24px;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+            border-radius: 20px;
+            padding: 28px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
             transition: all 0.3s ease;
-            border: 1px solid #e5e7eb;
+            border: 3px solid #e5e7eb;
             position: relative;
+            overflow: hidden;
+        }
+
+        .table-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
         }
 
         .table-card:hover {
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+            transform: translateY(-4px);
             border-color: #d1d5db;
         }
 
         .table-card.active {
-            box-shadow: 0 8px 24px rgba(139, 92, 246, 0.15);
-            border: 2px solid #8b5cf6;
-            background: linear-gradient(135deg, #faf5ff 0%, #ffffff 100%);
+            box-shadow: 0 20px 50px rgba(102, 126, 234, 0.2);
+            border: 3px solid #667eea;
+            background: linear-gradient(135deg, #f8f9ff 0%, #ffffff 100%);
         }
 
         .table-header {
@@ -158,220 +181,243 @@
         }
 
         .table-id {
-            font-size: 18px;
-            font-weight: 700;
+            font-size: 20px;
+            font-weight: 800;
             color: #1f2937;
         }
 
         .status-badge {
             display: inline-block;
-            padding: 6px 12px;
+            padding: 8px 16px;
             border-radius: 20px;
             font-size: 12px;
-            font-weight: 600;
-            background: #e5e7eb;
+            font-weight: 700;
+            background: #f3f4f6;
             color: #6b7280;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .status-badge.active {
-            background: #dbeafe;
-            color: #1e40af;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
         }
 
         .time-display {
-            background: #f3f4f6;
-            padding: 12px;
-            border-radius: 8px;
-            font-size: 12px;
+            background: #f9fafb;
+            padding: 14px;
+            border-radius: 12px;
+            font-size: 13px;
             color: #6b7280;
-            margin-bottom: 12px;
+            margin-bottom: 16px;
             border: 1px solid #e5e7eb;
+            font-weight: 600;
         }
 
         .time-display.active {
-            background: #eff6ff;
-            color: #1e40af;
+            background: linear-gradient(135deg, #f8f9ff 0%, #f3f4f6 100%);
+            color: #667eea;
             border-color: #bfdbfe;
         }
 
         .timer {
-            font-size: 48px;
-            font-weight: 700;
+            font-size: 56px;
+            font-weight: 800;
             text-align: center;
             color: #1f2937;
-            margin: 20px 0;
+            margin: 24px 0;
             font-family: 'Courier New', monospace;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
         }
 
         .timer.active {
-            color: #8b5cf6;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .fee {
-            font-size: 32px;
+            font-size: 40px;
             text-align: center;
-            color: #8b5cf6;
-            margin: 12px 0;
-            font-weight: 700;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin: 16px 0;
+            font-weight: 800;
         }
 
         .water-fee-display {
-            font-size: 13px;
+            font-size: 14px;
             text-align: center;
-            color: #06b6d4;
-            margin: 8px 0;
-            font-weight: 600;
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin: 10px 0;
+            font-weight: 700;
         }
 
         .countdown-section {
-            background: #f0f9ff;
-            padding: 16px;
-            border-radius: 12px;
-            margin: 16px 0;
-            border: 1px solid #bfdbfe;
+            background: linear-gradient(135deg, #f0f9ff 0%, #f3f4f6 100%);
+            padding: 18px;
+            border-radius: 14px;
+            margin: 18px 0;
+            border: 2px solid #bfdbfe;
         }
 
         .countdown-label {
             font-size: 12px;
             color: #1e40af;
-            font-weight: 600;
-            margin-bottom: 10px;
+            font-weight: 800;
+            margin-bottom: 12px;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 1px;
         }
 
         .countdown-display {
-            font-size: 20px;
+            font-size: 24px;
             color: #1e40af;
             text-align: center;
-            margin-bottom: 12px;
-            font-weight: 700;
+            margin-bottom: 14px;
+            font-weight: 800;
             font-family: 'Courier New', monospace;
         }
 
         .countdown-buttons {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
-            gap: 8px;
+            gap: 10px;
         }
 
         .countdown-btn {
-            padding: 10px;
-            border: 1px solid #bfdbfe;
+            padding: 12px;
+            border: 2px solid #bfdbfe;
             background: white;
-            border-radius: 8px;
+            border-radius: 10px;
             font-size: 12px;
-            font-weight: 600;
+            font-weight: 700;
             cursor: pointer;
             color: #1e40af;
             transition: all 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .countdown-btn:hover {
             background: #dbeafe;
             border-color: #93c5fd;
+            transform: translateY(-2px);
         }
 
         .countdown-btn.active {
-            background: #3b82f6;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            border-color: #3b82f6;
+            border-color: transparent;
         }
 
         .countdown-input-group {
             display: flex;
             gap: 8px;
-            margin-top: 10px;
+            margin-top: 12px;
         }
 
         .countdown-input {
             flex: 1;
-            padding: 8px 12px;
-            border: 1px solid #bfdbfe;
-            border-radius: 6px;
-            font-size: 12px;
+            padding: 10px 14px;
+            border: 2px solid #bfdbfe;
+            border-radius: 8px;
+            font-size: 13px;
             background: white;
             color: #1f2937;
+            font-weight: 600;
         }
 
         .countdown-input:focus {
             outline: none;
-            border-color: #3b82f6;
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+            border-color: #667eea;
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
         }
 
         .countdown-set-btn {
-            padding: 8px 12px;
-            background: #3b82f6;
+            padding: 10px 16px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             border: none;
-            border-radius: 6px;
+            border-radius: 8px;
             font-size: 12px;
-            font-weight: 600;
+            font-weight: 700;
             cursor: pointer;
             transition: all 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .countdown-set-btn:hover {
-            background: #2563eb;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
         }
 
         .button-group {
             display: flex;
             gap: 12px;
-            margin-top: 20px;
+            margin-top: 22px;
             flex-wrap: wrap;
         }
 
         .btn {
             flex: 1;
             min-width: 80px;
-            padding: 12px;
+            padding: 14px;
             border: none;
-            border-radius: 8px;
+            border-radius: 10px;
             font-size: 14px;
-            font-weight: 600;
+            font-weight: 700;
             cursor: pointer;
-            transition: all 0.2s;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
 
         .btn-start {
-            background: #10b981;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
             color: white;
         }
 
         .btn-start:hover {
-            background: #059669;
-            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
         }
 
         .btn-start:disabled {
             background: #d1d5db;
             cursor: not-allowed;
+            transform: none;
         }
 
         .btn-stop {
-            background: #ef4444;
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
             color: white;
         }
 
         .btn-stop:hover {
-            background: #dc2626;
-            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(239, 68, 68, 0.4);
         }
 
         .btn-water {
-            background: #06b6d4;
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
             color: white;
             font-size: 12px;
-            padding: 10px;
+            padding: 12px;
             flex: 0.6;
         }
 
         .btn-water:hover {
-            background: #0891b2;
-            box-shadow: 0 4px 12px rgba(6, 182, 212, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(79, 172, 254, 0.4);
         }
 
         .modal {
@@ -381,10 +427,11 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.6);
             justify-content: center;
             align-items: center;
             z-index: 1000;
+            backdrop-filter: blur(4px);
         }
 
         .modal.show {
@@ -393,102 +440,113 @@
 
         .modal-content {
             background: white;
-            padding: 40px;
-            border-radius: 16px;
+            padding: 48px;
+            border-radius: 24px;
             text-align: center;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-            max-width: 420px;
-            border: 1px solid #e5e7eb;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.2);
+            max-width: 450px;
+            border: 3px solid #667eea;
         }
 
         .modal-content h2 {
-            color: #1f2937;
-            margin-bottom: 24px;
-            font-size: 24px;
-            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 28px;
+            font-size: 28px;
+            font-weight: 800;
         }
 
         .modal-time {
             font-size: 14px;
             color: #6b7280;
-            margin: 18px 0;
-            padding: 14px;
-            background: #f3f4f6;
-            border-radius: 8px;
-            border: 1px solid #e5e7eb;
+            margin: 20px 0;
+            padding: 16px;
+            background: #f9fafb;
+            border-radius: 12px;
+            border: 2px solid #e5e7eb;
+            font-weight: 600;
         }
 
         .fee-detail {
-            font-size: 14px;
+            font-size: 15px;
             color: #374151;
-            margin: 18px 0;
-            padding: 18px;
+            margin: 20px 0;
+            padding: 20px;
             background: #f9fafb;
-            border-radius: 8px;
+            border-radius: 12px;
             text-align: left;
-            line-height: 2;
-            border: 1px solid #e5e7eb;
+            line-height: 2.2;
+            border: 2px solid #e5e7eb;
         }
 
         .fee-detail div {
             display: flex;
             justify-content: space-between;
-            margin: 10px 0;
+            margin: 12px 0;
         }
 
         .fee-detail .fee-label {
-            font-weight: 600;
+            font-weight: 700;
             color: #374151;
         }
 
         .fee-detail .fee-value {
-            color: #8b5cf6;
-            font-weight: 700;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 800;
         }
 
         .fee-detail .total-line {
-            border-top: 2px solid #e5e7eb;
-            padding-top: 14px;
-            margin-top: 14px;
-            font-size: 16px;
-        }
-
-        .fee-detail .total-line .fee-value {
-            color: #8b5cf6;
+            border-top: 3px solid #e5e7eb;
+            padding-top: 16px;
+            margin-top: 16px;
             font-size: 18px;
         }
 
+        .fee-detail .total-line .fee-value {
+            font-size: 20px;
+        }
+
         .modal-btn {
-            padding: 12px 32px;
-            background: #8b5cf6;
+            padding: 14px 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             border: none;
-            border-radius: 8px;
+            border-radius: 10px;
             cursor: pointer;
             font-size: 16px;
-            font-weight: 600;
-            margin-top: 24px;
-            transition: all 0.2s;
+            font-weight: 700;
+            margin-top: 28px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .modal-btn:hover {
-            background: #7c3aed;
-            box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
         }
 
         .countdown-alert {
             position: fixed;
             top: 24px;
             right: 24px;
-            background: #ef4444;
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
             color: white;
-            padding: 16px 24px;
-            border-radius: 8px;
-            box-shadow: 0 10px 30px rgba(239, 68, 68, 0.3);
-            font-weight: 600;
-            font-size: 14px;
+            padding: 18px 28px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(239, 68, 68, 0.4);
+            font-weight: 700;
+            font-size: 15px;
             z-index: 2000;
             animation: slideIn 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         @keyframes slideIn {
@@ -508,19 +566,19 @@
             }
 
             .header {
-                padding: 24px;
+                padding: 30px;
             }
 
             .header h1 {
-                font-size: 24px;
+                font-size: 28px;
             }
 
             .timer {
-                font-size: 36px;
+                font-size: 40px;
             }
 
             .fee {
-                font-size: 24px;
+                font-size: 28px;
             }
 
             .stats-container {
@@ -532,7 +590,7 @@
             }
 
             .modal-content {
-                padding: 30px;
+                padding: 36px;
                 margin: 20px;
             }
         }
@@ -541,7 +599,7 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>麻将桌计时管理系统</h1>
+            <h1>🎰 麻将桌计时管理系统</h1>
             <div class="stats-container">
                 <div class="stat-item">
                     <div class="stat-label">总桌数</div>
@@ -566,7 +624,7 @@
             </div>
             <div class="price-tip">💰 计费标准：麻将10元/小时 | 水费：2元/5元</div>
             <div class="controls">
-                <button class="reset-btn" onclick="resetAllData()">🔄 重置所有数据</button>
+                <button onclick="resetAllData()">🔄 重置所有数据</button>
             </div>
         </div>
 
@@ -711,12 +769,12 @@
             const timer = document.createElement('div');
             timer.className = `timer ${table.isActive ? 'active' : ''}`;
             timer.id = `timer-${index}`;
-            timer.textContent = formatTime(table.startTime);
+            timer.textContent = table.isActive ? formatTime(Date.now() - table.startTime) : '00:00:00';
 
             const fee = document.createElement('div');
             fee.className = 'fee';
             fee.id = `fee-${index}`;
-            fee.textContent = `¥${calculateFeeFromStartTime(table.startTime).toFixed(2)}`;
+            fee.textContent = table.isActive ? `¥${calculateFee(Math.floor((Date.now() - table.startTime) / 1000)).toFixed(2)}` : '¥0.00';
 
             const waterFeeDisplay = document.createElement('div');
             waterFeeDisplay.className = 'water-fee-display';
@@ -735,7 +793,7 @@
             const countdownDisplay = document.createElement('div');
             countdownDisplay.className = 'countdown-display';
             countdownDisplay.id = `countdown-display-${index}`;
-            countdownDisplay.textContent = table.countdownEndTime ? `${formatTime(table.countdownEndTime - Date.now())}` : '未设置';
+            countdownDisplay.textContent = table.countdownEndTime ? formatTime(table.countdownEndTime - Date.now()) : '未设置';
 
             const countdownButtons = document.createElement('div');
             countdownButtons.className = 'countdown-buttons';
@@ -763,7 +821,7 @@
             customInputGroup.className = 'countdown-input-group';
             customInputGroup.id = `custom-input-${index}`;
             customInputGroup.style.display = 'none';
-            customInputGroup.style.marginTop = '10px';
+            customInputGroup.style.marginTop = '12px';
 
             const customInput = document.createElement('input');
             customInput.type = 'number';
@@ -789,7 +847,7 @@
             const btnCancel = document.createElement('button');
             btnCancel.className = 'countdown-btn';
             btnCancel.textContent = '取消';
-            btnCancel.style.marginTop = '10px';
+            btnCancel.style.marginTop = '12px';
             btnCancel.style.gridColumn = '1 / -1';
             btnCancel.onclick = () => cancelCountdown(index);
 
@@ -889,6 +947,12 @@
 
         function setCountdown(index, seconds) {
             const table = state.tables[index];
+            
+            // 设置倒计时时，自动开台
+            if (!table.isActive) {
+                startTable(index);
+            }
+            
             table.countdownEndTime = Date.now() + (seconds * 1000);
             saveState();
 
@@ -980,15 +1044,9 @@
             return (seconds / 3600) * PRICE_PER_HOUR;
         }
 
-        function calculateFeeFromStartTime(startTime) {
-            if (!startTime) return 0;
-            const elapsed = Math.floor((Date.now() - startTime) / 1000);
-            return calculateFee(elapsed);
-        }
-
         function formatTime(ms) {
-            if (!ms && ms !== 0) return '00:00:00';
-            const totalSeconds = Math.floor(Math.max(0, ms / 1000));
+            if (ms < 0) ms = 0;
+            const totalSeconds = Math.floor(ms / 1000);
             const hours = Math.floor(totalSeconds / 3600);
             const minutes = Math.floor((totalSeconds % 3600) / 60);
             const secs = totalSeconds % 60;
@@ -1031,15 +1089,16 @@
             updateTimer = setInterval(() => {
                 Object.keys(state.tables).forEach(index => {
                     const table = state.tables[index];
-                    const timerEl = document.getElementById(`timer-${index}`);
-                    const feeEl = document.getElementById(`fee-${index}`);
-                    
-                    if (table.startTime && table.isActive) {
+                    if (table.isActive && table.startTime) {
+                        const timerEl = document.getElementById(`timer-${index}`);
+                        const feeEl = document.getElementById(`fee-${index}`);
+                        const elapsed = Date.now() - table.startTime;
+                        
                         if (timerEl) {
-                            timerEl.textContent = formatTime(Date.now() - table.startTime);
+                            timerEl.textContent = formatTime(elapsed);
                         }
                         if (feeEl) {
-                            feeEl.textContent = `¥${calculateFeeFromStartTime(table.startTime).toFixed(2)}`;
+                            feeEl.textContent = `¥${calculateFee(Math.floor(elapsed / 1000)).toFixed(2)}`;
                         }
                     }
                 });
