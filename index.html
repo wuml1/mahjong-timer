@@ -29,6 +29,26 @@
             border-radius: 20px;
             margin-bottom: 40px;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '🎰';
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 60px;
+            opacity: 0.1;
+        }
+
+        .header::after {
+            content: '🀄';
+            position: absolute;
+            bottom: 10px;
+            left: 20px;
+            font-size: 60px;
+            opacity: 0.1;
         }
 
         .header h1 {
@@ -36,10 +56,12 @@
             margin-bottom: 30px;
             font-size: 36px;
             font-weight: 800;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #f59e0b 0%, #f97316 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            position: relative;
+            z-index: 1;
         }
 
         .stats-container {
@@ -47,6 +69,8 @@
             grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
             gap: 20px;
             margin-bottom: 30px;
+            position: relative;
+            z-index: 1;
         }
 
         .stat-item {
@@ -79,7 +103,7 @@
         }
 
         .stat-item.mahjong {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            background: linear-gradient(135deg, #fca5a5 0%, #f87171 100%);
         }
 
         .stat-item.mahjong .stat-label,
@@ -88,7 +112,7 @@
         }
 
         .stat-item.water {
-            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            background: linear-gradient(135deg, #86efac 0%, #4ade80 100%);
         }
 
         .stat-item.water .stat-label,
@@ -106,12 +130,16 @@
             margin-bottom: 24px;
             font-weight: 600;
             backdrop-filter: blur(10px);
+            position: relative;
+            z-index: 1;
         }
 
         .controls {
             display: flex;
             gap: 12px;
             flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
         }
 
         .controls button {
@@ -158,7 +186,16 @@
             left: 0;
             right: 0;
             height: 4px;
-            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(90deg, #f59e0b 0%, #f97316 100%);
+        }
+
+        .table-card::after {
+            content: '🎲';
+            position: absolute;
+            bottom: 10px;
+            right: 15px;
+            font-size: 40px;
+            opacity: 0.08;
         }
 
         .table-card:hover {
@@ -168,9 +205,15 @@
         }
 
         .table-card.active {
-            box-shadow: 0 20px 50px rgba(102, 126, 234, 0.2);
-            border: 3px solid #667eea;
-            background: linear-gradient(135deg, #f8f9ff 0%, #ffffff 100%);
+            box-shadow: 0 20px 50px rgba(249, 115, 22, 0.2);
+            border: 3px solid #f97316;
+            background: linear-gradient(135deg, #fffbeb 0%, #ffffff 100%);
+        }
+
+        .table-card.countdown-mode {
+            box-shadow: 0 20px 50px rgba(34, 197, 94, 0.2);
+            border: 3px solid #22c55e;
+            background: linear-gradient(135deg, #f0fdf4 0%, #ffffff 100%);
         }
 
         .table-header {
@@ -178,6 +221,8 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
         }
 
         .table-id {
@@ -199,8 +244,13 @@
         }
 
         .status-badge.active {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
+            background: linear-gradient(135deg, #fed7aa 0%, #fdba74 100%);
+            color: #92400e;
+        }
+
+        .status-badge.countdown {
+            background: linear-gradient(135deg, #bbf7d0 0%, #86efac 100%);
+            color: #166534;
         }
 
         .time-display {
@@ -212,12 +262,14 @@
             margin-bottom: 16px;
             border: 1px solid #e5e7eb;
             font-weight: 600;
+            position: relative;
+            z-index: 1;
         }
 
         .time-display.active {
-            background: linear-gradient(135deg, #f8f9ff 0%, #f3f4f6 100%);
-            color: #667eea;
-            border-color: #bfdbfe;
+            background: linear-gradient(135deg, #fef3c7 0%, #fef9e7 100%);
+            color: #92400e;
+            border-color: #fcd34d;
         }
 
         .timer {
@@ -228,10 +280,12 @@
             margin: 24px 0;
             font-family: 'Courier New', monospace;
             letter-spacing: 3px;
+            position: relative;
+            z-index: 1;
         }
 
         .timer.active {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #f59e0b 0%, #f97316 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -240,36 +294,49 @@
         .fee {
             font-size: 40px;
             text-align: center;
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            background: linear-gradient(135deg, #fca5a5 0%, #f87171 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             margin: 16px 0;
             font-weight: 800;
+            position: relative;
+            z-index: 1;
         }
 
         .water-fee-display {
             font-size: 14px;
             text-align: center;
-            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            background: linear-gradient(135deg, #86efac 0%, #4ade80 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             margin: 10px 0;
             font-weight: 700;
+            position: relative;
+            z-index: 1;
         }
 
         .countdown-section {
-            background: linear-gradient(135deg, #f0f9ff 0%, #f3f4f6 100%);
+            background: linear-gradient(135deg, #f0fdf4 0%, #f3f4f6 100%);
             padding: 18px;
             border-radius: 14px;
             margin: 18px 0;
-            border: 2px solid #bfdbfe;
+            border: 2px solid #86efac;
+            position: relative;
+            z-index: 1;
+        }
+
+        .countdown-section.disabled {
+            opacity: 0.5;
+            pointer-events: none;
+            border-color: #d1d5db;
+            background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
         }
 
         .countdown-label {
             font-size: 12px;
-            color: #1e40af;
+            color: #166534;
             font-weight: 800;
             margin-bottom: 12px;
             text-transform: uppercase;
@@ -278,7 +345,7 @@
 
         .countdown-display {
             font-size: 24px;
-            color: #1e40af;
+            color: #166534;
             text-align: center;
             margin-bottom: 14px;
             font-weight: 800;
@@ -293,26 +360,26 @@
 
         .countdown-btn {
             padding: 12px;
-            border: 2px solid #bfdbfe;
+            border: 2px solid #86efac;
             background: white;
             border-radius: 10px;
             font-size: 12px;
             font-weight: 700;
             cursor: pointer;
-            color: #1e40af;
+            color: #166534;
             transition: all 0.2s;
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
 
         .countdown-btn:hover {
-            background: #dbeafe;
-            border-color: #93c5fd;
+            background: #dcfce7;
+            border-color: #4ade80;
             transform: translateY(-2px);
         }
 
         .countdown-btn.active {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #86efac 0%, #4ade80 100%);
             color: white;
             border-color: transparent;
         }
@@ -326,7 +393,7 @@
         .countdown-input {
             flex: 1;
             padding: 10px 14px;
-            border: 2px solid #bfdbfe;
+            border: 2px solid #86efac;
             border-radius: 8px;
             font-size: 13px;
             background: white;
@@ -336,13 +403,13 @@
 
         .countdown-input:focus {
             outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+            border-color: #22c55e;
+            box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.1);
         }
 
         .countdown-set-btn {
             padding: 10px 16px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #86efac 0%, #4ade80 100%);
             color: white;
             border: none;
             border-radius: 8px;
@@ -356,7 +423,7 @@
 
         .countdown-set-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+            box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3);
         }
 
         .button-group {
@@ -364,6 +431,8 @@
             gap: 12px;
             margin-top: 22px;
             flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
         }
 
         .btn {
@@ -382,13 +451,13 @@
         }
 
         .btn-start {
-            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            background: linear-gradient(135deg, #f59e0b 0%, #f97316 100%);
             color: white;
         }
 
         .btn-start:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+            box-shadow: 0 6px 20px rgba(249, 115, 22, 0.4);
         }
 
         .btn-start:disabled {
@@ -408,7 +477,7 @@
         }
 
         .btn-water {
-            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            background: linear-gradient(135deg, #86efac 0%, #4ade80 100%);
             color: white;
             font-size: 12px;
             padding: 12px;
@@ -417,7 +486,7 @@
 
         .btn-water:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(79, 172, 254, 0.4);
+            box-shadow: 0 6px 20px rgba(34, 197, 94, 0.4);
         }
 
         .modal {
@@ -445,11 +514,28 @@
             text-align: center;
             box-shadow: 0 25px 60px rgba(0, 0, 0, 0.2);
             max-width: 450px;
-            border: 3px solid #667eea;
+            border: 3px solid #f97316;
+            position: relative;
+        }
+
+        .modal-content::before {
+            content: '🎉';
+            position: absolute;
+            top: -20px;
+            left: 20px;
+            font-size: 40px;
+        }
+
+        .modal-content::after {
+            content: '🎊';
+            position: absolute;
+            top: -20px;
+            right: 20px;
+            font-size: 40px;
         }
 
         .modal-content h2 {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #f59e0b 0%, #f97316 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -493,7 +579,7 @@
         }
 
         .fee-detail .fee-value {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            background: linear-gradient(135deg, #fca5a5 0%, #f87171 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -513,7 +599,7 @@
 
         .modal-btn {
             padding: 14px 40px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #f59e0b 0%, #f97316 100%);
             color: white;
             border: none;
             border-radius: 10px;
@@ -522,14 +608,14 @@
             font-weight: 700;
             margin-top: 28px;
             transition: all 0.3s;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+            box-shadow: 0 4px 15px rgba(249, 115, 22, 0.3);
             text-transform: uppercase;
             letter-spacing: 1px;
         }
 
         .modal-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 6px 20px rgba(249, 115, 22, 0.4);
         }
 
         .countdown-alert {
@@ -558,6 +644,13 @@
                 transform: translateX(0);
                 opacity: 1;
             }
+        }
+
+        .sticker {
+            position: absolute;
+            font-size: 32px;
+            opacity: 0.7;
+            pointer-events: none;
         }
 
         @media (max-width: 768px) {
@@ -666,6 +759,7 @@
 
         const PRICE_PER_HOUR = 10;
         const UPDATE_INTERVAL = 1000;
+        const STICKERS = ['🎲', '🀄', '🎯', '🎪', '🎭', '🎨', '🎬', '🎤', '🎧', '🎸', '🎹', '🎺', '🎻', '🥁'];
 
         let state = {
             tables: {},
@@ -710,7 +804,8 @@
                     startTime: null,
                     startTimeDisplay: null,
                     waterFee: 0,
-                    countdownEndTime: null
+                    countdownEndTime: null,
+                    countdownMode: false
                 };
             });
             
@@ -740,8 +835,16 @@
 
         function createTableCard(table, index) {
             const card = document.createElement('div');
-            card.className = `table-card ${table.isActive ? 'active' : ''}`;
+            card.className = `table-card ${table.isActive ? 'active' : ''} ${table.countdownMode ? 'countdown-mode' : ''}`;
             card.id = `table-${index}`;
+
+            // 添加随机贴纸
+            const sticker = document.createElement('div');
+            sticker.className = 'sticker';
+            sticker.textContent = STICKERS[Math.floor(Math.random() * STICKERS.length)];
+            sticker.style.top = Math.random() * 60 + 'px';
+            sticker.style.right = Math.random() * 40 + 'px';
+            card.appendChild(sticker);
 
             const header = document.createElement('div');
             header.className = 'table-header';
@@ -751,14 +854,20 @@
             idEl.textContent = `房间 ${table.room} - ${table.number}号`;
             
             const statusBadge = document.createElement('div');
-            statusBadge.className = `status-badge ${table.isActive ? 'active' : ''}`;
-            statusBadge.textContent = table.isActive ? '使用中' : '空闲';
+            statusBadge.className = `status-badge ${table.isActive ? 'active' : ''} ${table.countdownMode ? 'countdown' : ''}`;
+            if (table.countdownMode) {
+                statusBadge.textContent = '倒计时中';
+            } else if (table.isActive) {
+                statusBadge.textContent = '计时中';
+            } else {
+                statusBadge.textContent = '空闲';
+            }
             
             header.appendChild(idEl);
             header.appendChild(statusBadge);
 
             const timeDisplay = document.createElement('div');
-            timeDisplay.className = `time-display ${table.isActive ? 'active' : ''}`;
+            timeDisplay.className = `time-display ${table.isActive || table.countdownMode ? 'active' : ''}`;
             timeDisplay.id = `time-${index}`;
             if (table.startTimeDisplay) {
                 timeDisplay.textContent = `📍 开台时间：${table.startTimeDisplay}`;
@@ -767,7 +876,7 @@
             }
 
             const timer = document.createElement('div');
-            timer.className = `timer ${table.isActive ? 'active' : ''}`;
+            timer.className = `timer ${table.isActive || table.countdownMode ? 'active' : ''}`;
             timer.id = `timer-${index}`;
             timer.textContent = table.isActive ? formatTime(Date.now() - table.startTime) : '00:00:00';
 
@@ -783,7 +892,7 @@
 
             // 倒计时部分
             const countdownSection = document.createElement('div');
-            countdownSection.className = 'countdown-section';
+            countdownSection.className = `countdown-section ${table.isActive ? 'disabled' : ''}`;
             countdownSection.id = `countdown-section-${index}`;
             
             const countdownLabel = document.createElement('div');
@@ -802,16 +911,19 @@
             btn1h.className = 'countdown-btn';
             btn1h.textContent = '1小时';
             btn1h.onclick = () => setCountdown(index, 3600);
+            btn1h.disabled = table.isActive;
 
             const btn2h = document.createElement('button');
             btn2h.className = 'countdown-btn';
             btn2h.textContent = '2小时';
             btn2h.onclick = () => setCountdown(index, 7200);
+            btn2h.disabled = table.isActive;
 
             const btnCustom = document.createElement('button');
             btnCustom.className = 'countdown-btn';
             btnCustom.textContent = '自定义';
             btnCustom.onclick = () => toggleCustomInput(index);
+            btnCustom.disabled = table.isActive;
 
             countdownButtons.appendChild(btn1h);
             countdownButtons.appendChild(btn2h);
@@ -867,6 +979,13 @@
                 stopBtn.onclick = () => stopTable(index);
 
                 buttonGroup.appendChild(stopBtn);
+            } else if (table.countdownMode) {
+                const stopBtn = document.createElement('button');
+                stopBtn.className = 'btn btn-stop';
+                stopBtn.textContent = '结束倒计时';
+                stopBtn.onclick = () => stopCountdown(index);
+
+                buttonGroup.appendChild(stopBtn);
             } else {
                 const startBtn = document.createElement('button');
                 startBtn.className = 'btn btn-start';
@@ -889,13 +1008,19 @@
             buttonGroup.appendChild(waterBtn2);
             buttonGroup.appendChild(waterBtn5);
 
-            card.appendChild(header);
-            card.appendChild(timeDisplay);
-            card.appendChild(timer);
-            card.appendChild(fee);
-            card.appendChild(waterFeeDisplay);
-            card.appendChild(countdownSection);
-            card.appendChild(buttonGroup);
+            const card_content = document.createElement('div');
+            card_content.style.position = 'relative';
+            card_content.style.zIndex = '1';
+
+            card_content.appendChild(header);
+            card_content.appendChild(timeDisplay);
+            card_content.appendChild(timer);
+            card_content.appendChild(fee);
+            card_content.appendChild(waterFeeDisplay);
+            card_content.appendChild(countdownSection);
+            card_content.appendChild(buttonGroup);
+
+            card.appendChild(card_content);
 
             return card;
         }
@@ -912,6 +1037,8 @@
                 table.startTimeDisplay = formatDateTime(new Date(table.startTime));
             }
             table.isActive = true;
+            table.countdownMode = false;
+            table.countdownEndTime = null;
             saveState();
             renderTables();
         }
@@ -935,6 +1062,7 @@
             table.startTimeDisplay = null;
             table.waterFee = 0;
             table.countdownEndTime = null;
+            table.countdownMode = false;
 
             if (countdownTimers[index]) {
                 clearInterval(countdownTimers[index]);
@@ -948,11 +1076,11 @@
         function setCountdown(index, seconds) {
             const table = state.tables[index];
             
-            // 设置倒计时时，自动开台
-            if (!table.isActive) {
-                startTable(index);
-            }
-            
+            // 设置倒计时，不开台
+            table.countdownMode = true;
+            table.isActive = false;
+            table.startTime = null;
+            table.startTimeDisplay = null;
             table.countdownEndTime = Date.now() + (seconds * 1000);
             saveState();
 
@@ -967,6 +1095,7 @@
                     clearInterval(countdownTimers[index]);
                     delete countdownTimers[index];
                     table.countdownEndTime = null;
+                    table.countdownMode = false;
                     saveState();
                     showCountdownAlert(index);
                     renderTables();
@@ -982,8 +1111,9 @@
             renderTables();
         }
 
-        function cancelCountdown(index) {
+        function stopCountdown(index) {
             const table = state.tables[index];
+            table.countdownMode = false;
             table.countdownEndTime = null;
             
             if (countdownTimers[index]) {
@@ -993,6 +1123,10 @@
 
             saveState();
             renderTables();
+        }
+
+        function cancelCountdown(index) {
+            stopCountdown(index);
         }
 
         function showCountdownAlert(index) {
@@ -1074,7 +1208,7 @@
         }
 
         function updateStats() {
-            const activeCount = Object.values(state.tables).filter(t => t.isActive).length;
+            const activeCount = Object.values(state.tables).filter(t => t.isActive || t.countdownMode).length;
             document.getElementById('activeCount').textContent = activeCount;
             document.getElementById('mahjongIncome').textContent = `¥${state.mahjongIncome.toFixed(2)}`;
             document.getElementById('waterIncome').textContent = `¥${state.waterIncome.toFixed(2)}`;
@@ -1117,6 +1251,7 @@
                     state.tables[index].startTimeDisplay = null;
                     state.tables[index].waterFee = 0;
                     state.tables[index].countdownEndTime = null;
+                    state.tables[index].countdownMode = false;
                     
                     if (countdownTimers[index]) {
                         clearInterval(countdownTimers[index]);
