@@ -12,8 +12,8 @@
         }
 
         body {
-            font-family: 'Microsoft YaHei', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            font-family: 'Segoe UI', 'Microsoft YaHei', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
             min-height: 100vh;
             padding: 20px;
         }
@@ -24,137 +24,166 @@
         }
 
         .header {
-            background: linear-gradient(135deg, #e94560 0%, #d63447 100%);
-            padding: 30px;
-            border-radius: 20px;
-            margin-bottom: 30px;
-            box-shadow: 0 10px 40px rgba(233, 69, 96, 0.3);
-            border: 3px solid #ff6b7a;
+            background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 50%, #1e3a8a 100%);
+            padding: 40px;
+            border-radius: 24px;
+            margin-bottom: 40px;
+            box-shadow: 0 20px 60px rgba(30, 58, 138, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             position: relative;
             overflow: hidden;
         }
 
         .header::before {
-            content: "🀄";
+            content: "";
             position: absolute;
-            top: 10px;
-            left: 20px;
-            font-size: 50px;
-            opacity: 0.15;
-        }
-
-        .header::after {
-            content: "🎰";
-            position: absolute;
-            bottom: 10px;
-            right: 20px;
-            font-size: 50px;
-            opacity: 0.15;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
+            pointer-events: none;
         }
 
         .header h1 {
-            color: white;
-            margin-bottom: 20px;
-            font-size: 36px;
-            text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
-            font-weight: bold;
+            color: #e0f2fe;
+            margin-bottom: 25px;
+            font-size: 40px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            position: relative;
+            z-index: 1;
         }
 
         .stats-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-            gap: 15px;
-            margin-bottom: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+            margin-bottom: 25px;
+            position: relative;
+            z-index: 1;
         }
 
         .stat-item {
-            background: rgba(255,255,255,0.15);
-            padding: 15px;
-            border-radius: 12px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.03) 100%);
+            padding: 20px;
+            border-radius: 16px;
             text-align: center;
-            color: white;
-            backdrop-filter: blur(10px);
-            border: 2px solid rgba(255,255,255,0.2);
+            color: #e0f2fe;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .stat-item:hover {
+            background: linear-gradient(135deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.05) 100%);
+            border-color: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
         }
 
         .stat-item.water {
-            background: rgba(0, 180, 219, 0.2);
-            border-color: rgba(0, 180, 219, 0.4);
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0.15) 0%, rgba(6, 182, 212, 0.05) 100%);
+            border-color: rgba(6, 182, 212, 0.3);
         }
 
         .stat-item.mahjong {
-            background: rgba(233, 69, 96, 0.2);
-            border-color: rgba(233, 69, 96, 0.4);
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.15) 0%, rgba(168, 85, 247, 0.05) 100%);
+            border-color: rgba(168, 85, 247, 0.3);
         }
 
         .stat-label {
-            font-size: 12px;
-            opacity: 0.9;
-            margin-bottom: 8px;
+            font-size: 13px;
+            opacity: 0.8;
+            margin-bottom: 10px;
             font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .stat-value {
-            font-size: 26px;
-            font-weight: bold;
+            font-size: 28px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-item.water .stat-value {
+            background: linear-gradient(135deg, #06b6d4 0%, #14b8a6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-item.mahjong .stat-value {
+            background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .price-tip {
             font-size: 14px;
-            color: white;
-            padding: 12px;
-            background: rgba(0,0,0,0.2);
-            border-left: 5px solid #ff6b7a;
-            border-radius: 6px;
-            margin-bottom: 15px;
+            color: #cbd5e1;
+            padding: 16px 20px;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(6, 182, 212, 0.1) 100%);
+            border-left: 4px solid #3b82f6;
+            border-radius: 12px;
+            margin-bottom: 20px;
             font-weight: 600;
+            position: relative;
+            z-index: 1;
+            border: 1px solid rgba(59, 130, 246, 0.2);
         }
 
         .controls {
             display: flex;
-            gap: 10px;
+            gap: 12px;
             flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
         }
 
         .controls button {
-            padding: 12px 20px;
+            padding: 12px 24px;
             border: none;
-            border-radius: 8px;
+            border-radius: 12px;
             cursor: pointer;
             font-size: 14px;
-            font-weight: bold;
+            font-weight: 600;
             transition: all 0.3s;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
 
         .reset-btn {
-            background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
             color: white;
         }
 
         .reset-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(220, 53, 69, 0.4);
+            box-shadow: 0 6px 20px rgba(239, 68, 68, 0.4);
         }
 
         .export-btn {
-            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
             color: white;
         }
 
         .export-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(40, 167, 69, 0.4);
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
         }
 
         .import-btn {
-            background: linear-gradient(135deg, #ffc107 0%, #ff9800 100%);
-            color: #333;
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            color: white;
         }
 
         .import-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(255, 193, 7, 0.4);
+            box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4);
         }
 
         #importFile {
@@ -163,118 +192,124 @@
 
         .tables-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 25px;
-            margin-bottom: 30px;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 28px;
+            margin-bottom: 40px;
         }
 
         .table-card {
-            background: linear-gradient(135deg, #2d2d44 0%, #1f1f2e 100%);
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
             border-radius: 20px;
-            padding: 25px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+            padding: 28px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.4);
             transition: all 0.3s ease;
-            border: 3px solid #404050;
+            border: 1px solid rgba(255, 255, 255, 0.08);
             position: relative;
             overflow: hidden;
         }
 
         .table-card::before {
-            content: "🀄";
+            content: "";
             position: absolute;
-            top: -20px;
-            right: -20px;
-            font-size: 100px;
-            opacity: 0.05;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 100% 0%, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
+            pointer-events: none;
         }
 
         .table-card.active {
-            box-shadow: 0 0 40px rgba(233, 69, 96, 0.6);
-            border: 3px solid #e94560;
+            box-shadow: 0 0 50px rgba(59, 130, 246, 0.4);
+            border: 1px solid rgba(59, 130, 246, 0.4);
             transform: translateY(-8px);
-            background: linear-gradient(135deg, #3d3d54 0%, #2f2f3e 100%);
+            background: linear-gradient(135deg, #1e3a8a 0%, #1e293b 100%);
         }
 
         .table-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 15px;
+            margin-bottom: 18px;
             position: relative;
             z-index: 1;
         }
 
         .table-id {
-            font-size: 22px;
-            font-weight: bold;
-            color: #e94560;
+            font-size: 20px;
+            font-weight: 700;
+            color: #3b82f6;
             display: flex;
             align-items: center;
-            gap: 8px;
-        }
-
-        .table-id::before {
-            content: "🎰";
-            font-size: 24px;
+            gap: 10px;
+            letter-spacing: 0.5px;
         }
 
         .status-light {
-            width: 28px;
-            height: 28px;
+            width: 32px;
+            height: 32px;
             border-radius: 50%;
-            background: #404050;
+            background: rgba(255, 255, 255, 0.1);
             transition: all 0.3s;
-            box-shadow: 0 0 0 3px rgba(0,0,0,0.3);
-            border: 2px solid #505060;
+            box-shadow: 0 0 0 3px rgba(0,0,0,0.2);
+            border: 2px solid rgba(255, 255, 255, 0.15);
         }
 
         .status-light.active {
-            background: #ffc107;
-            box-shadow: 0 0 20px #ffc107, 0 0 0 3px rgba(255,193,7,0.3);
-            animation: pulse 1.5s infinite;
+            background: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);
+            box-shadow: 0 0 25px rgba(59, 130, 246, 0.6), 0 0 0 3px rgba(59, 130, 246, 0.2);
+            animation: pulse-modern 2s infinite;
         }
 
-        @keyframes pulse {
-            0%, 100% { box-shadow: 0 0 20px #ffc107, 0 0 0 3px rgba(255,193,7,0.3); }
-            50% { box-shadow: 0 0 30px #ffc107, 0 0 0 6px rgba(255,193,7,0.5); }
+        @keyframes pulse-modern {
+            0%, 100% { box-shadow: 0 0 25px rgba(59, 130, 246, 0.6), 0 0 0 3px rgba(59, 130, 246, 0.2); }
+            50% { box-shadow: 0 0 35px rgba(59, 130, 246, 0.8), 0 0 0 6px rgba(59, 130, 246, 0.3); }
         }
 
         .time-display {
-            background: rgba(0,0,0,0.3);
-            padding: 12px;
-            border-radius: 10px;
-            font-size: 12px;
-            color: #b0b0c0;
-            margin-bottom: 12px;
+            background: rgba(59, 130, 246, 0.1);
+            padding: 14px;
+            border-radius: 12px;
+            font-size: 13px;
+            color: #cbd5e1;
+            margin-bottom: 14px;
             position: relative;
             z-index: 1;
-            border-left: 3px solid #e94560;
+            border-left: 4px solid #3b82f6;
+            border: 1px solid rgba(59, 130, 246, 0.2);
         }
 
         .time-display.active {
-            background: rgba(233, 69, 96, 0.2);
-            border-left-color: #ffc107;
-            color: #ffc107;
+            background: rgba(59, 130, 246, 0.15);
+            border-left-color: #06b6d4;
+            color: #e0f2fe;
+            border-color: rgba(6, 182, 212, 0.3);
         }
 
         .timer {
-            font-size: 42px;
-            font-weight: bold;
+            font-size: 48px;
+            font-weight: 700;
             text-align: center;
-            color: #ffc107;
-            margin: 18px 0;
+            background: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin: 20px 0;
             font-family: 'Courier New', monospace;
             position: relative;
             z-index: 1;
-            text-shadow: 0 2px 8px rgba(255, 193, 7, 0.3);
+            letter-spacing: 2px;
         }
 
         .fee {
-            font-size: 32px;
+            font-size: 36px;
             text-align: center;
-            color: #e94560;
-            margin: 12px 0;
-            font-weight: bold;
+            background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin: 14px 0;
+            font-weight: 700;
             position: relative;
             z-index: 1;
         }
@@ -282,17 +317,68 @@
         .water-fee-display {
             font-size: 14px;
             text-align: center;
-            color: #00b4db;
-            margin: 8px 0;
-            font-weight: bold;
+            background: linear-gradient(135deg, #06b6d4 0%, #14b8a6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin: 10px 0;
+            font-weight: 600;
             position: relative;
             z-index: 1;
         }
 
+        .countdown-section {
+            background: rgba(59, 130, 246, 0.1);
+            padding: 14px;
+            border-radius: 12px;
+            margin: 14px 0;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            position: relative;
+            z-index: 1;
+        }
+
+        .countdown-display {
+            font-size: 16px;
+            color: #cbd5e1;
+            text-align: center;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .countdown-buttons {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+        }
+
+        .countdown-btn {
+            padding: 8px 14px;
+            border: none;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: rgba(59, 130, 246, 0.2);
+            color: #e0f2fe;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+        }
+
+        .countdown-btn:hover {
+            background: rgba(59, 130, 246, 0.3);
+            border-color: rgba(59, 130, 246, 0.5);
+        }
+
+        .countdown-btn.active {
+            background: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);
+            color: white;
+            border-color: transparent;
+        }
+
         .button-group {
             display: flex;
-            gap: 10px;
-            margin-top: 18px;
+            gap: 12px;
+            margin-top: 20px;
             position: relative;
             z-index: 1;
             flex-wrap: wrap;
@@ -300,58 +386,48 @@
 
         .btn {
             flex: 1;
-            min-width: 70px;
-            padding: 12px;
+            min-width: 80px;
+            padding: 14px;
             border: none;
-            border-radius: 10px;
-            font-size: 13px;
-            font-weight: bold;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 600;
             cursor: pointer;
             transition: all 0.3s;
             box-shadow: 0 4px 12px rgba(0,0,0,0.2);
         }
 
         .btn-start {
-            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
             color: white;
         }
 
         .btn-start:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(40, 167, 69, 0.4);
+            box-shadow: 0 6px 16px rgba(16, 185, 129, 0.4);
         }
 
         .btn-stop {
-            background: linear-gradient(135deg, #e94560 0%, #d63447 100%);
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
             color: white;
         }
 
         .btn-stop:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(233, 69, 96, 0.4);
-        }
-
-        .btn-pause {
-            background: linear-gradient(135deg, #ffc107 0%, #ff9800 100%);
-            color: #333;
-        }
-
-        .btn-pause:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(255, 193, 7, 0.4);
+            box-shadow: 0 6px 16px rgba(239, 68, 68, 0.4);
         }
 
         .btn-water {
-            background: linear-gradient(135deg, #00b4db 0%, #0083b0 100%);
+            background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
             color: white;
             font-size: 12px;
-            padding: 10px;
-            flex: 0.5;
+            padding: 12px;
+            flex: 0.6;
         }
 
         .btn-water:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(0, 180, 219, 0.4);
+            box-shadow: 0 6px 16px rgba(6, 182, 212, 0.4);
         }
 
         .btn:disabled {
@@ -367,10 +443,11 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.7);
+            background: rgba(0,0,0,0.8);
             justify-content: center;
             align-items: center;
             z-index: 1000;
+            backdrop-filter: blur(5px);
         }
 
         .modal.show {
@@ -378,46 +455,49 @@
         }
 
         .modal-content {
-            background: linear-gradient(135deg, #2d2d44 0%, #1f1f2e 100%);
-            padding: 40px;
-            border-radius: 20px;
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            padding: 48px;
+            border-radius: 24px;
             text-align: center;
-            box-shadow: 0 15px 50px rgba(0,0,0,0.5);
-            border: 3px solid #e94560;
-            max-width: 420px;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.6);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            max-width: 450px;
         }
 
         .modal-content h2 {
-            color: #e94560;
-            margin-bottom: 20px;
-            font-size: 26px;
+            color: #3b82f6;
+            margin-bottom: 24px;
+            font-size: 28px;
+            font-weight: 700;
         }
 
         .modal-time {
             font-size: 14px;
-            color: #b0b0c0;
-            margin: 15px 0;
-            padding: 10px;
-            background: rgba(0,0,0,0.3);
-            border-radius: 8px;
-            border-left: 3px solid #e94560;
+            color: #cbd5e1;
+            margin: 18px 0;
+            padding: 14px;
+            background: rgba(59, 130, 246, 0.1);
+            border-radius: 12px;
+            border-left: 4px solid #3b82f6;
+            border: 1px solid rgba(59, 130, 246, 0.2);
         }
 
         .fee-detail {
             font-size: 14px;
-            color: #b0b0c0;
-            margin: 15px 0;
-            padding: 15px;
-            background: rgba(0,0,0,0.3);
-            border-radius: 8px;
+            color: #cbd5e1;
+            margin: 18px 0;
+            padding: 18px;
+            background: rgba(59, 130, 246, 0.1);
+            border-radius: 12px;
             text-align: left;
-            line-height: 1.8;
+            line-height: 2;
+            border: 1px solid rgba(59, 130, 246, 0.2);
         }
 
         .fee-detail div {
             display: flex;
             justify-content: space-between;
-            margin: 8px 0;
+            margin: 10px 0;
         }
 
         .fee-detail .fee-label {
@@ -425,39 +505,71 @@
         }
 
         .fee-detail .fee-value {
-            color: #ffc107;
-            font-weight: bold;
+            background: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
         }
 
         .fee-detail .total-line {
-            border-top: 2px solid #505060;
-            padding-top: 12px;
-            margin-top: 12px;
+            border-top: 1px solid rgba(59, 130, 246, 0.3);
+            padding-top: 14px;
+            margin-top: 14px;
             font-size: 16px;
         }
 
         .fee-detail .total-line .fee-value {
-            color: #e94560;
+            background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             font-size: 18px;
         }
 
         .modal-btn {
-            padding: 12px 30px;
-            background: linear-gradient(135deg, #e94560 0%, #d63447 100%);
+            padding: 14px 36px;
+            background: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);
             color: white;
             border: none;
-            border-radius: 10px;
+            border-radius: 12px;
             cursor: pointer;
             font-size: 16px;
-            font-weight: bold;
-            margin-top: 20px;
+            font-weight: 600;
+            margin-top: 24px;
             transition: all 0.3s;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
 
         .modal-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(233, 69, 96, 0.4);
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+        }
+
+        .countdown-alert {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            color: white;
+            padding: 20px 28px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(239, 68, 68, 0.4);
+            font-weight: 600;
+            font-size: 16px;
+            z-index: 2000;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
         }
 
         @media (max-width: 768px) {
@@ -465,20 +577,29 @@
                 grid-template-columns: 1fr;
             }
 
-            .header h1 {
-                font-size: 28px;
+            .header {
+                padding: 30px;
             }
 
-            .timer {
+            .header h1 {
                 font-size: 32px;
             }
 
+            .timer {
+                font-size: 36px;
+            }
+
             .fee {
-                font-size: 24px;
+                font-size: 28px;
             }
 
             .stats-container {
                 grid-template-columns: repeat(2, 1fr);
+            }
+
+            .modal-content {
+                padding: 36px;
+                margin: 20px;
             }
         }
     </style>
@@ -486,7 +607,7 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>🀄 麻将桌计时管理系统 🎰</h1>
+            <h1>麻将桌计时管理系统</h1>
             <div class="stats-container">
                 <div class="stat-item">
                     <div class="stat-label">总桌数</div>
@@ -564,6 +685,7 @@
         };
 
         let updateTimer = null;
+        let countdownTimers = {};
 
         function init() {
             loadState();
@@ -597,9 +719,10 @@
                     number: config.number,
                     isActive: false,
                     startTime: null,
-                    pausedTime: null,
                     startTimeDisplay: null,
-                    waterFee: 0
+                    waterFee: 0,
+                    countdownTime: null,
+                    countdownEndTime: null
                 };
             });
             
@@ -699,21 +822,50 @@
             waterFeeDisplay.id = `water-fee-${index}`;
             waterFeeDisplay.textContent = table.waterFee > 0 ? `水费：¥${table.waterFee.toFixed(2)}` : '';
 
+            // 倒计时部分
+            const countdownSection = document.createElement('div');
+            countdownSection.className = 'countdown-section';
+            countdownSection.id = `countdown-section-${index}`;
+            
+            const countdownDisplay = document.createElement('div');
+            countdownDisplay.className = 'countdown-display';
+            countdownDisplay.id = `countdown-display-${index}`;
+            countdownDisplay.textContent = table.countdownEndTime ? `倒计时：${formatTime(table.countdownEndTime - Date.now())}` : '未设置倒计时';
+
+            const countdownButtons = document.createElement('div');
+            countdownButtons.className = 'countdown-buttons';
+
+            const btn1h = document.createElement('button');
+            btn1h.className = 'countdown-btn';
+            btn1h.textContent = '1小时';
+            btn1h.onclick = () => setCountdown(index, 3600);
+
+            const btn30m = document.createElement('button');
+            btn30m.className = 'countdown-btn';
+            btn30m.textContent = '30分钟';
+            btn30m.onclick = () => setCountdown(index, 1800);
+
+            const btnCancel = document.createElement('button');
+            btnCancel.className = 'countdown-btn';
+            btnCancel.textContent = '取消';
+            btnCancel.onclick = () => cancelCountdown(index);
+
+            countdownButtons.appendChild(btn1h);
+            countdownButtons.appendChild(btn30m);
+            countdownButtons.appendChild(btnCancel);
+
+            countdownSection.appendChild(countdownDisplay);
+            countdownSection.appendChild(countdownButtons);
+
             const buttonGroup = document.createElement('div');
             buttonGroup.className = 'button-group';
 
             if (table.isActive) {
-                const pauseBtn = document.createElement('button');
-                pauseBtn.className = 'btn btn-pause';
-                pauseBtn.textContent = '暂停';
-                pauseBtn.onclick = () => pauseTable(index);
-
                 const stopBtn = document.createElement('button');
                 stopBtn.className = 'btn btn-stop';
                 stopBtn.textContent = '结束';
                 stopBtn.onclick = () => stopTable(index);
 
-                buttonGroup.appendChild(pauseBtn);
                 buttonGroup.appendChild(stopBtn);
             } else {
                 const startBtn = document.createElement('button');
@@ -742,6 +894,7 @@
             card.appendChild(timer);
             card.appendChild(fee);
             card.appendChild(waterFeeDisplay);
+            card.appendChild(countdownSection);
             card.appendChild(buttonGroup);
 
             return card;
@@ -753,20 +906,9 @@
                 table.startTime = Date.now();
             }
             table.isActive = true;
-            table.pausedTime = null;
             table.startTimeDisplay = formatDateTime(new Date(table.startTime));
             saveState();
             renderTables();
-        }
-
-        function pauseTable(index) {
-            const table = state.tables[index];
-            if (table.isActive && table.startTime) {
-                table.isActive = false;
-                table.pausedTime = Date.now();
-                saveState();
-                renderTables();
-            }
         }
 
         function stopTable(index) {
@@ -785,12 +927,94 @@
 
             table.isActive = false;
             table.startTime = null;
-            table.pausedTime = null;
             table.startTimeDisplay = null;
             table.waterFee = 0;
+            table.countdownEndTime = null;
+
+            if (countdownTimers[index]) {
+                clearInterval(countdownTimers[index]);
+                delete countdownTimers[index];
+            }
 
             saveState();
             renderTables();
+        }
+
+        function setCountdown(index, seconds) {
+            const table = state.tables[index];
+            table.countdownEndTime = Date.now() + (seconds * 1000);
+            saveState();
+
+            if (countdownTimers[index]) {
+                clearInterval(countdownTimers[index]);
+            }
+
+            countdownTimers[index] = setInterval(() => {
+                const remaining = table.countdownEndTime - Date.now();
+                
+                if (remaining <= 0) {
+                    clearInterval(countdownTimers[index]);
+                    delete countdownTimers[index];
+                    table.countdownEndTime = null;
+                    saveState();
+                    showCountdownAlert(index);
+                    renderTables();
+                } else {
+                    const display = document.getElementById(`countdown-display-${index}`);
+                    if (display) {
+                        display.textContent = `倒计时：${formatTime(remaining)}`;
+                    }
+                }
+            }, 100);
+
+            saveState();
+            renderTables();
+        }
+
+        function cancelCountdown(index) {
+            const table = state.tables[index];
+            table.countdownEndTime = null;
+            
+            if (countdownTimers[index]) {
+                clearInterval(countdownTimers[index]);
+                delete countdownTimers[index];
+            }
+
+            saveState();
+            renderTables();
+        }
+
+        function showCountdownAlert(index) {
+            const table = state.tables[index];
+            const alert = document.createElement('div');
+            alert.className = 'countdown-alert';
+            alert.textContent = `🔔 房间${table.room}-${table.number}号 倒计时结束！`;
+            document.body.appendChild(alert);
+
+            setTimeout(() => {
+                alert.remove();
+            }, 5000);
+
+            // 播放提示音
+            playNotificationSound();
+        }
+
+        function playNotificationSound() {
+            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+
+            oscillator.frequency.value = 800;
+            oscillator.type = 'sine';
+
+            gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.5);
+
+            oscillator.start(audioContext.currentTime);
+            oscillator.stop(audioContext.currentTime + 0.5);
         }
 
         function addWaterFee(index, amount) {
@@ -816,12 +1040,12 @@
             return calculateFee(elapsed);
         }
 
-        function formatTime(startTime) {
-            if (!startTime) return '00:00:00';
-            const elapsed = Math.floor((Date.now() - startTime) / 1000);
-            const hours = Math.floor(elapsed / 3600);
-            const minutes = Math.floor((elapsed % 3600) / 60);
-            const secs = elapsed % 60;
+        function formatTime(ms) {
+            if (!ms && ms !== 0) return '00:00:00';
+            const totalSeconds = Math.floor(ms / 1000);
+            const hours = Math.floor(totalSeconds / 3600);
+            const minutes = Math.floor((totalSeconds % 3600) / 60);
+            const secs = totalSeconds % 60;
             return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
         }
 
@@ -866,7 +1090,7 @@
                     
                     if (table.startTime) {
                         if (timerEl) {
-                            timerEl.textContent = formatTime(table.startTime);
+                            timerEl.textContent = formatTime(Date.now() - table.startTime);
                         }
                         if (feeEl) {
                             feeEl.textContent = `¥${calculateFeeFromStartTime(table.startTime).toFixed(2)}`;
@@ -885,9 +1109,14 @@
                 Object.keys(state.tables).forEach(index => {
                     state.tables[index].isActive = false;
                     state.tables[index].startTime = null;
-                    state.tables[index].pausedTime = null;
                     state.tables[index].startTimeDisplay = null;
                     state.tables[index].waterFee = 0;
+                    state.tables[index].countdownEndTime = null;
+                    
+                    if (countdownTimers[index]) {
+                        clearInterval(countdownTimers[index]);
+                        delete countdownTimers[index];
+                    }
                 });
                 saveState();
                 renderTables();
