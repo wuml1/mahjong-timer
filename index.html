@@ -509,7 +509,7 @@
                     <div class="stat-value" id="totalIncome">¥0.00</div>
                 </div>
             </div>
-            <div class="price-tip">💰 计费标准：麻将10元/小时 | 水费：2元/5元</div>
+            <div class="price-tip">💰 计费标准：麻将10元/小时 | 水费：2元/5元 | 💾 数据永久保存</div>
             <div class="controls">
                 <button class="export-btn" onclick="exportData()">💾 导出数据</button>
                 <button class="import-btn" onclick="document.getElementById('importFile').click()">📂 导入数据</button>
@@ -544,7 +544,6 @@
     </div>
 
     <script>
-        // 配置
         const TABLES_CONFIG = [
             { room: 100, number: 1 },
             { room: 101, number: 1 },
@@ -598,7 +597,7 @@
                     number: config.number,
                     isActive: false,
                     startTime: null,
-                    elapsedSeconds: 0,
+                    pausedTime: null,
                     startTimeDisplay: null,
                     waterFee: 0
                 };
@@ -688,12 +687,12 @@
             const timer = document.createElement('div');
             timer.className = 'timer';
             timer.id = `timer-${index}`;
-            timer.textContent = formatTime(table.elapsedSeconds);
+            timer.textContent = formatTime(table.startTime);
 
             const fee = document.createElement('div');
             fee.className = 'fee';
             fee.id = `fee-${index}`;
-            fee.textContent = `¥${calculateFee(table.elapsedSeconds).toFixed(2)}`;
+            fee.textContent = `¥${calculateFeeFromStartTime(table.startTime).toFixed(2)}`;
 
             const waterFeeDisplay = document.createElement('div');
             waterFeeDisplay.className = 'water-fee-display';
@@ -750,9 +749,11 @@
 
         function startTable(index) {
             const table = state.tables[index];
-            const now = Date.now();
+            if (!table.startTime) {
+                table.startTime = Date.now();
+            }
             table.isActive = true;
-            table.startTime = now - (table.elapsedSeconds * 1000);
+            table.pausedTime = null;
             table.startTimeDisplay = formatDateTime(new Date(table.startTime));
             saveState();
             renderTables();
@@ -761,9 +762,8 @@
         function pauseTable(index) {
             const table = state.tables[index];
             if (table.isActive && table.startTime) {
-                table.elapsedSeconds = Math.floor((Date.now() - table.startTime) / 1000);
                 table.isActive = false;
-                table.startTime = null;
+                table.pausedTime = Date.now();
                 saveState();
                 renderTables();
             }
@@ -773,11 +773,8 @@
             const table = state.tables[index];
             let endTime = new Date();
             
-            if (table.startTime) {
-                table.elapsedSeconds = Math.floor((Date.now() - table.startTime) / 1000);
-            }
-
-            const fee = calculateFee(table.elapsedSeconds);
+            const elapsed = table.startTime ? Math.floor((Date.now() - table.startTime) / 1000) : 0;
+            const fee = calculateFee(elapsed);
             state.mahjongIncome += fee;
             state.waterIncome += table.waterFee;
 
@@ -788,7 +785,7 @@
 
             table.isActive = false;
             table.startTime = null;
-            table.elapsedSeconds = 0;
+            table.pausedTime = null;
             table.startTimeDisplay = null;
             table.waterFee = 0;
 
@@ -813,10 +810,18 @@
             return (seconds / 3600) * PRICE_PER_HOUR;
         }
 
-        function formatTime(seconds) {
-            const hours = Math.floor(seconds / 3600);
-            const minutes = Math.floor((seconds % 3600) / 60);
-            const secs = seconds % 60;
+        function calculateFeeFromStartTime(startTime) {
+            if (!startTime) return 0;
+            const elapsed = Math.floor((Date.now() - startTime) / 1000);
+            return calculateFee(elapsed);
+        }
+
+        function formatTime(startTime) {
+            if (!startTime) return '00:00:00';
+            const elapsed = Math.floor((Date.now() - startTime) / 1000);
+            const hours = Math.floor(elapsed / 3600);
+            const minutes = Math.floor((elapsed % 3600) / 60);
+            const secs = elapsed % 60;
             return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
         }
 
@@ -856,17 +861,15 @@
             updateTimer = setInterval(() => {
                 Object.keys(state.tables).forEach(index => {
                     const table = state.tables[index];
-                    if (table.isActive && table.startTime) {
-                        const now = Date.now();
-                        const elapsed = Math.floor((now - table.startTime) / 1000);
-                        const timerEl = document.getElementById(`timer-${index}`);
-                        const feeEl = document.getElementById(`fee-${index}`);
-
+                    const timerEl = document.getElementById(`timer-${index}`);
+                    const feeEl = document.getElementById(`fee-${index}`);
+                    
+                    if (table.startTime) {
                         if (timerEl) {
-                            timerEl.textContent = formatTime(elapsed);
+                            timerEl.textContent = formatTime(table.startTime);
                         }
                         if (feeEl) {
-                            feeEl.textContent = `¥${calculateFee(elapsed).toFixed(2)}`;
+                            feeEl.textContent = `¥${calculateFeeFromStartTime(table.startTime).toFixed(2)}`;
                         }
                     }
                 });
@@ -882,7 +885,7 @@
                 Object.keys(state.tables).forEach(index => {
                     state.tables[index].isActive = false;
                     state.tables[index].startTime = null;
-                    state.tables[index].elapsedSeconds = 0;
+                    state.tables[index].pausedTime = null;
                     state.tables[index].startTimeDisplay = null;
                     state.tables[index].waterFee = 0;
                 });
