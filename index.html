@@ -805,7 +805,8 @@
                     startTimeDisplay: null,
                     waterFee: 0,
                     countdownEndTime: null,
-                    countdownMode: false
+                    countdownMode: false,
+                    countdownSeconds: 0
                 };
             });
             
@@ -878,12 +879,24 @@
             const timer = document.createElement('div');
             timer.className = `timer ${table.isActive || table.countdownMode ? 'active' : ''}`;
             timer.id = `timer-${index}`;
-            timer.textContent = table.isActive ? formatTime(Date.now() - table.startTime) : '00:00:00';
+            if (table.isActive) {
+                timer.textContent = formatTime(Date.now() - table.startTime);
+            } else if (table.countdownMode) {
+                timer.textContent = formatTime(table.countdownEndTime - Date.now());
+            } else {
+                timer.textContent = '00:00:00';
+            }
 
             const fee = document.createElement('div');
             fee.className = 'fee';
             fee.id = `fee-${index}`;
-            fee.textContent = table.isActive ? `¥${calculateFee(Math.floor((Date.now() - table.startTime) / 1000)).toFixed(2)}` : '¥0.00';
+            if (table.isActive) {
+                fee.textContent = `¥${calculateFee(Math.floor((Date.now() - table.startTime) / 1000)).toFixed(2)}`;
+            } else if (table.countdownMode) {
+                fee.textContent = `¥${calculateFee(table.countdownSeconds).toFixed(2)}`;
+            } else {
+                fee.textContent = '¥0.00';
+            }
 
             const waterFeeDisplay = document.createElement('div');
             waterFeeDisplay.className = 'water-fee-display';
@@ -1081,6 +1094,7 @@
             table.isActive = false;
             table.startTime = null;
             table.startTimeDisplay = null;
+            table.countdownSeconds = seconds;
             table.countdownEndTime = Date.now() + (seconds * 1000);
             saveState();
 
@@ -1094,8 +1108,16 @@
                 if (remaining <= 0) {
                     clearInterval(countdownTimers[index]);
                     delete countdownTimers[index];
+                    
+                    // 倒计时结束，自动计入收入
+                    const fee = calculateFee(table.countdownSeconds);
+                    state.mahjongIncome += fee;
+                    state.waterIncome += table.waterFee;
+                    
                     table.countdownEndTime = null;
                     table.countdownMode = false;
+                    table.countdownSeconds = 0;
+                    table.waterFee = 0;
                     saveState();
                     showCountdownAlert(index);
                     renderTables();
@@ -1113,8 +1135,22 @@
 
         function stopCountdown(index) {
             const table = state.tables[index];
+            
+            // 提前结束倒计时，计入收入
+            if (table.countdownMode) {
+                const fee = calculateFee(table.countdownSeconds);
+                state.mahjongIncome += fee;
+                state.waterIncome += table.waterFee;
+                
+                const startTimeStr = formatDateTime(new Date(Date.now() - (table.countdownSeconds * 1000)));
+                const endTimeStr = formatDateTime(new Date());
+                showModal(fee, table.waterFee, startTimeStr, endTimeStr);
+            }
+            
             table.countdownMode = false;
             table.countdownEndTime = null;
+            table.countdownSeconds = 0;
+            table.waterFee = 0;
             
             if (countdownTimers[index]) {
                 clearInterval(countdownTimers[index]);
@@ -1252,6 +1288,7 @@
                     state.tables[index].waterFee = 0;
                     state.tables[index].countdownEndTime = null;
                     state.tables[index].countdownMode = false;
+                    state.tables[index].countdownSeconds = 0;
                     
                     if (countdownTimers[index]) {
                         clearInterval(countdownTimers[index]);
